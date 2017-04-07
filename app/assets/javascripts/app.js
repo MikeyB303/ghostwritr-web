@@ -3,12 +3,14 @@ $(document).ready(function () {
 
 
   $('app-container').replaceWith('<h1>GhostWriter</h1>' +
-      "<br>" + "<textarea id='user_text'/>" + "<br>" + "<ul id='predicted-text'></ul>" +
+      "<br>" + "<textarea id='user_text'/>" + "<br>" + "<ul id='predicted_text'></ul>" +
       "<a href='/shakespeare'>Shakespeare</a>" + "<br>" + "<a href='/rowling'>J-K Rowling</a>"
   );
 
   $('body').on('click', 'a', function (event) {
     var $library = $(this);
+    $('#predicted_text').empty();
+    $('#user_text').val('');
     event.preventDefault();
     $.ajax({
       url: $library.attr('href'),
@@ -48,8 +50,8 @@ $(document).ready(function () {
   }
 
   function renderWords(wordsArray) {
-    var $predictionField = $('#predicted-text');
-      $predictionField.empty();
+    var $predictionField = $('#predicted_text');
+    $predictionField.empty();
     for(var i = 0; i < wordsArray.length; i++){
       $predictionField.append('<li>' + wordsArray[i].word + ' -- '
           + (wordsArray[i].probability * 100).toFixed(2) + '% </li>')
