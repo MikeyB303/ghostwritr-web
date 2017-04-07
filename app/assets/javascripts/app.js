@@ -42,7 +42,7 @@ $(document).ready(function () {
   }
 
   function renderWords(wordsArray) {
-    var $predictionField = $('#predicted-text')
+    var $predictionField = $('#predicted-text');
       $predictionField.empty();
     for(var i = 0; i < wordsArray.length; i++){
       $predictionField.append('<li>' + wordsArray[i].word + ' -- '
