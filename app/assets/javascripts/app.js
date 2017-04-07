@@ -17,30 +17,37 @@ $(document).ready(function () {
     if(event.which === 32){
       var userText = lastWord($(this).val());
       var possibleWords = probabilityChain[userText];
-      var fileteredProbabilities = formatPredictions(possibleWords);
-      renderWords(fileteredProbabilities);
+      var filteredProbabilities = formatPredictions(possibleWords);
+      console.log(filteredProbabilities);
+      renderWords(filteredProbabilities);
     }
   });
 
   function lastWord(input) {
     var inputArray = input.split(' ');
-    return inputArray[inputArray.length - 2]
+    return inputArray[inputArray.length - 2].toLowerCase()
   }
 
   function formatPredictions(predictions) {
     var probableWords = [];
     $.each(predictions, function (word, probability) {
-      if (probability >= .025){
-        probableWords.push(word);
+      if (probability >= 0.025){
+        probableWords.push({word: word, probability: probability});
       }
     });
-    return probableWords;
+    probableWords.sort(function (a, b) {
+      return b.probability - a.probability
+    });
+
+    return probableWords
   }
 
   function renderWords(wordsArray) {
-      $('#predicted-text').empty();
+    var $predictionField = $('#predicted-text')
+      $predictionField.empty();
     for(var i = 0; i < wordsArray.length; i++){
-      $('#predicted-text').append('<li>' + wordsArray[i] + '</li>')
+      $predictionField.append('<li>' + wordsArray[i].word + ' -- '
+          + (wordsArray[i].probability * 100).toFixed(2) + '% </li>')
     }
   }
 });
