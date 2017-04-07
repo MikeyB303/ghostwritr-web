@@ -18,7 +18,6 @@ $(document).ready(function () {
       var userText = lastWord($(this).val());
       var possibleWords = probabilityChain[userText];
       var filteredProbabilities = formatPredictions(possibleWords);
-      console.log(filteredProbabilities);
       renderWords(filteredProbabilities);
     }
   });
