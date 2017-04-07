@@ -8,5 +8,10 @@ class HomeController < ApplicationController
     file = File.read('shakespeare-probability-chain.json')
     render json: file
   end
+  
+  def rowling
+    file = File.read('j-k-rowling-probability-chain.json')
+    render json: file
+  end
 
 end
