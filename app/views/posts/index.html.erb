@@ -1,6 +1,6 @@
 <h1>Ghostwritr</h1>
 <ul id="post-list">
   <% @posts.each do |post|%>
-    <li class="post-list-item"><%= post.title %></li>
+    <li class="post-list-item">Title: <%= post.title %>. Votes: <%= post.votes.count %></li>
   <% end %>
 </ul>
