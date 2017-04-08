@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   get '/rowling' => 'home#rowling'
 
   resources :users, only: [:new, :create]
-  # TODO restrict sessions routes
-  resources :sessions
+  resources :sessions, only: [:new, :create, :destroy]
 
 end
