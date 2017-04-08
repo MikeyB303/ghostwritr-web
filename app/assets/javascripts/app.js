@@ -4,10 +4,10 @@ $(document).ready(function () {
 
   $('app-container').replaceWith('<h1>GhostWriter</h1>' +
       "<br>" + "<textarea id='user_text'/>" + "<br>" + "<ul id='predicted_text'></ul>" +
-      "<a href='/shakespeare'>Shakespeare</a>" + "<br>" + "<a href='/rowling'>J-K Rowling</a>"
+      "<a class='inspirationalauthor' href='/shakespeare'>Shakespeare</a>" + "<br>" + "<a class='inspirationalauthor' href='/rowling'>J-K Rowling</a>"
   );
 
-  $('body').on('click', 'a', function (event) {
+  $('body').on('click', '.inspirationalauthor', function (event) {
     var $library = $(this);
     $('#predicted_text').empty();
     $('#user_text').val('');
