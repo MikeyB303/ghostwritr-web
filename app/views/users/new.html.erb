@@ -1,0 +1,23 @@
+<h1>Sign up</h1>
+<% if @errors %>
+    <ul>
+      <% @errors.each do |error| %>
+          <li><%= error %></li>
+      <% end %>
+    </ul>
+<% end %>
+<div class="row">
+	<%= form_for :users, url: '/users' do |f| %>
+	
+      <%= f.label :username %>
+      <%= f.text_field :username %>
+
+      <%= f.label :email %>
+      <%= f.email_field :email %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+
+      <%= f.submit "Create my account" %>
+	<% end %>
+</div>
