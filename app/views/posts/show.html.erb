@@ -15,7 +15,8 @@
 			<%= "Place holder showing comment below"  %>
 			<p>
 				<%= comment.body %> 
-				<%= link_to "UP VOTE", post_comment_votes_path(@post,comment), method: "CREATE" %>		
+				<%= comment.votes.count %>
+				<%= link_to "UP VOTE", comment_votes_path(@post,comment), method: "CREATE" %>		
 			</p> 
 			<% if authorized?(comment.commenter_id) %>
 				<p><%= link_to "Delete your comment", post_comment_path(@post,comment), method: "DELETE" %></p>
