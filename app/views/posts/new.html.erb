@@ -6,7 +6,7 @@
       <% end %>
     </ul>
 <% end %>
-<%= form_for :posts, url: user_posts_path(current_user.id) do |f| %>
+<%= form_for :posts, url: posts_path do |f| %>
   <%= f.label :title %>:
   <%= f.text_field :title %><br />
 
