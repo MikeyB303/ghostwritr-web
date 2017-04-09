@@ -1,4 +1,10 @@
-<h1><%= @post.title %></h1>
+<h1>
+	<%= @post.title %> 
+	<% if voted?(@post) %>
+		<%= link_to "UP VOTE", post_votes_path(@post), method: "CREATE" %>
+	<% end %>
+	
+</h1>
 <p><%= @post.text %></p>
 
 <% if @post.comments %>
