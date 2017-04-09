@@ -1,7 +1,8 @@
 class PostsController < ApplicationController
   
   def index
-    @posts = Post.all.sort_by{|post| post.votes.count}.reverse 
+    @posts = Post.all.select {|post| post.published?}
+    @posts = @posts.sort_by{|post| post.votes.count}.reverse 
   end
 
   def show
