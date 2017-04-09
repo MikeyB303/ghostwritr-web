@@ -15,8 +15,22 @@ class PostsController < ApplicationController
     else
       @errors = new_post.errors.full_messages
       render 'posts/new'
+    end   
+  end
+
+  def edit
+    @post = Post.find_by(id: params[:id])
+  end
+
+  def update
+    post = Post.find_by(id: params[:id])
+    post.update_attributes(post_params)
+    if post.save
+      redirect_to root_path
+    else
+      @errors = post.errors.full_messages
+      render 'posts/edit'
     end
-      
   end
 
   private
