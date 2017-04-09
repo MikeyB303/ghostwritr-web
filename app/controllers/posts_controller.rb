@@ -4,6 +4,10 @@ class PostsController < ApplicationController
     @posts = Post.all.sort_by{|post| post.votes.count}.reverse 
   end
 
+  def show
+    @post = Post.find(params[:id])
+  end
+
   def new
   end
 
