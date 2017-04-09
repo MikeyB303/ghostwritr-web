@@ -6,7 +6,7 @@
       <% end %>
     </ul>
 <% end %>
-<%= form_for :comments, url: user_comments_path(current_user.id) do |f| %>
+<%= form_for :comments, url: post_comments_path(@post) do |f| %>
 
   <%= f.label :body %>:
   <%= f.text_area :body %><br />

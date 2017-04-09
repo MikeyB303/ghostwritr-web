@@ -1,6 +1,16 @@
 <h1><%= @post.title %></h1>
 <p><%= @post.text %></p>
 
+<% if @post.comments %>
+	<% @post.comments.each do |comment| %>
+		<div>
+			<%= "Place holder showing comment"  %>
+			<p><%= comment.body %></p> 
+			
+		</div>
+	<% end %>
+<% end %>
+
 <% if author?(@post) %>
   <%= link_to "Edit your post", edit_post_path(@post) %>
   <%= link_to "Delete your post", post_path(@post), method: "DELETE" %>
