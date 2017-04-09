@@ -1,0 +1,18 @@
+<h1>Edit your post!</h1>
+<% if @errors %>
+    <ul>
+      <% @errors.each do |error| %>
+          <li><%= error %></li>
+      <% end %>
+    </ul>
+<% end %>
+<%= form_for :posts, url: user_post_path, method: 'PUT' do |f| %>
+  <%= f.label :title %>:
+  <%= f.text_field :title, value: @post.try(:title) %><br />
+
+  <%= f.label :text %>:
+  <%= f.text_area :text, value: @post.try(:text) %><br />
+
+
+  <%= f.submit %>
+<% end %>
