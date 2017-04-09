@@ -1,7 +1,7 @@
 <h1>Ghostwritr</h1>
 <ul id="post-list">
   <% @posts.each do |post|%>
-    <li class="post-list-item">Title: <%= post.title %>. Votes: <%= post.votes.count %></li>
+    <li class="post-list-item">Title: <%= link_to "#{post.title}", user_post_path(current_user.id, post) %>. Votes: <%= post.votes.count %></li>
   <% end %>
 </ul>
 
