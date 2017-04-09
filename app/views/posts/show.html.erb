@@ -3,7 +3,7 @@
 
 <% if author?(@post) %>
   <%= link_to "Edit your post", edit_post_path(@post) %>
-  <%= link_to "Delete your post", user_path(@post), method: "DELETE" %>
+  <%= link_to "Delete your post", post_path(@post), method: "DELETE" %>
 <% end %>
 
 <% if logged_in? %>
