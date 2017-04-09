@@ -6,7 +6,7 @@
       <% end %>
     </ul>
 <% end %>
-<%= form_for :posts, url: user_post_path, method: 'PUT' do |f| %>
+<%= form_for :posts, url: post_path, method: 'PUT' do |f| %>
   <%= f.label :title %>:
   <%= f.text_field :title, value: @post.try(:title) %><br />
 
