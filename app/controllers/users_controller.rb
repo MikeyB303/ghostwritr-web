@@ -13,6 +13,10 @@
 			end
 		end
 
+		def show
+			@user = User.find_by(id: params[:id])
+		end
+
 		private
 		def user_params
 			params.require(:users).permit(:username, :email, :password)
