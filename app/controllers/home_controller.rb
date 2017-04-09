@@ -14,4 +14,10 @@ class HomeController < ApplicationController
     render json: file
   end
 
+  def got
+    file = File.read('got-probability-chain.json')
+    render json: file
+  end
+
+
 end
