@@ -22,6 +22,10 @@ class VotesController < ApplicationController
 	# 		end
 	# 	end
 	# end
+	def new
+		@vote = @voteable.votes.new
+	end
+
 	def create 
 		@vote = @voteable.votes.new(allowed_params)
 		if @vote.save

@@ -1,7 +1,9 @@
 <h1>
 	<%= @post.title %> 
-	<% if voted?(@post) %>
-		<%= link_to "UP VOTE", post_votes_path(@post), method: "CREATE" %>
+	<% if logged_in? %>
+		<% if voted?(@post) %>
+			<%= link_to "UP VOTE", post_votes_path(@post), method: "CREATE" %>
+		<% end %>
 	<% end %>
 	
 </h1>
