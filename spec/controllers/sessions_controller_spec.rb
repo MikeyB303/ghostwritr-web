@@ -20,11 +20,11 @@ describe SessionsController do
   end
   describe "Delete session" do
     let!(:user) {User.create!(username: "mikey", email: "test@email.com", password: "password")}
-    #TODO test destroys route
-    # it "destroys session if log out" do
-    #   delete :destroy
-    #   expect(session[:user_id]).to be nil
-    # end
+    
+    it "destroys session if log out" do
+      delete :destroy, {params: {id: user.id}}
+      expect(session[:user_id]).to be nil
+    end
   end
 
 end
