@@ -15,6 +15,8 @@
 
 		def show
 			@user = User.find_by(id: params[:id])
+			@user_posts = @user.posts
+			
 		end
 
 		private
