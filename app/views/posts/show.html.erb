@@ -1,7 +1,9 @@
 <h1>
 	<%= @post.title %> 
-	<% if voted?(@post) %>
-		<%= link_to "UP VOTE", post_votes_path(@post), method: "CREATE" %>
+	<% if logged_in? %>
+		<% if voted?(@post) %>
+			<%= link_to "UP VOTE", post_votes_path(@post), method: "CREATE" %>
+		<% end %>
 	<% end %>
 	
 </h1>
@@ -10,8 +12,14 @@
 <% if @post.comments %>
 	<% @post.comments.each do |comment| %>
 		<div>
-			<%= "Place holder showing comment"  %>
-			<p><%= comment.body %></p> 
+			<%= "Place holder showing comment below"  %>
+			<p>
+				<%= comment.body %> 
+				<%= comment.votes.count %>
+				<% if voted?(comment)%>
+					<%= link_to "UP VOTE", comment_votes_path(comment), method: "CREATE" %>
+				<% end %>		
+			</p> 
 			<% if authorized?(comment.commenter_id) %>
 				<p><%= link_to "Delete your comment", post_comment_path(@post,comment), method: "DELETE" %></p>
 			<% end %>

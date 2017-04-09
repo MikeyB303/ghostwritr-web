@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20170408195551) do
     t.string   "votable_type", null: false
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.index ["votable_id", "votable_type"], name: "index_votes_on_votable_id_and_votable_type", using: :btree
   end
 
 end
