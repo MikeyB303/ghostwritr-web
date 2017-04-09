@@ -1,7 +1,18 @@
 <h1>Ghostwritr</h1>
 <ul id="post-list">
   <% @posts.each do |post|%>
-    <li class="post-list-item">Title: <%= post.title %>. Votes: <%= post.votes.count %></li>
+    <% if author?(post) %>
+      <li class="post-list-item">
+        Title: <%= post.title %>. 
+        Votes: <%= post.votes.count %> 
+        <%= link_to "Edit your post", edit_user_post_path(current_user, post) %>
+      </li>
+    <% else %>
+      <li class="post-list-item">
+        Title: <%= post.title %>. 
+        Votes: <%= post.votes.count %> 
+      </li>
+    <% end %>
   <% end %>
 </ul>
 
