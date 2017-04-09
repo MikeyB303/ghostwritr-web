@@ -38,7 +38,7 @@ $(document).ready(function () {
   function formatPredictions(predictions) {
     var probableWords = [];
     $.each(predictions, function (word, probability) {
-      if (probability > 0.01){
+      if (probability > 0.003){
         probableWords.push({word: word, probability: probability});
       }
     });
