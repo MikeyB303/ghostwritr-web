@@ -1,0 +1,18 @@
+<h1>Log in</h1>
+<% if @errors %>
+    <ul>
+      <% @errors.each do |error| %>
+          <li><%= error %></li>
+      <% end %>
+    </ul>
+<% end %>
+<div class = "row">
+	<%= form_for :sessions, url: sessions_path do |f| %>
+		<%= f.label :email %>
+		<%= f.text_field :email %> <br>
+		<%= f.label :password %>
+		<%= f.password_field :password %><br>
+	
+		<%= f.submit "Log In" %>
+<% end %>
+</div>
