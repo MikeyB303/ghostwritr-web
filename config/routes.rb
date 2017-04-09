@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get '/rowling' => 'home#rowling'
 
   resources :posts do 
+  	resources :votes, only:[:create, :destroy]
   	resources :comments, only: [:new, :create, :destroy]
   end
   resources :users, only: [:new, :create] 
