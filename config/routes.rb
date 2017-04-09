@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   	resources :comments, only: [:new, :create, :destroy] 
   end
 
-
+# TODO remove index routes
   resources :comments, only: [:index] do 
   	resources :votes, only:[:create]
   end
