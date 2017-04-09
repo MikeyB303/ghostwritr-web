@@ -4,3 +4,7 @@
     <li class="post-list-item">Title: <%= post.title %>. Votes: <%= post.votes.count %></li>
   <% end %>
 </ul>
+
+<% if logged_in? %>
+  <%= link_to "New Post", new_user_post_path(current_user) %>
+<% end %>

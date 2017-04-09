@@ -1,0 +1,19 @@
+<h1>Write a new post!</h1>
+<% if @errors %>
+    <ul>
+      <% @errors.each do |error| %>
+          <li><%= error %></li>
+      <% end %>
+    </ul>
+<% end %>
+<%= form_for :posts, url: user_posts_path(current_user.id) do |f| %>
+  <%= f.label :title %>:
+  <%= f.text_field :title %><br />
+
+  <%= f.label :text %>:
+  <%= f.text_area :text %><br />
+
+  
+
+  <%= f.submit %>
+<% end %>
