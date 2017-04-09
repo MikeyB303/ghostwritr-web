@@ -1,11 +1,15 @@
 class PostsController < ApplicationController
   
   def index
-    @posts = Post.all.sort_by{|post| post.votes.count}.reverse 
+    @posts = Post.all.select {|post| post.published?}
+    @posts = @posts.sort_by{|post| post.votes.count}.reverse 
   end
 
   def show
     @post = Post.find(params[:id])
+    if !author?(@post) && @post.published? == false
+      redirect_to '/'
+    end
   end
 
   def new
@@ -45,7 +49,7 @@ class PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:posts).permit(:author_id, :title, :text)
+    params.require(:posts).permit(:author_id, :title, :text, :published?)
   end
 
 end
