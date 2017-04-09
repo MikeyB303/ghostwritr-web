@@ -2,8 +2,6 @@ class VotesController < ApplicationController
 
 	
 	def create
-		puts params
-		puts "*" * 30
 		if params[:comment_id]
 			comment = Comment.find_by(id:params[:comment_id])
 			vote = comment.votes.create!(voter_id: current_user.id)
