@@ -7,6 +7,9 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    if !author?(@post) && @post.published? == false
+      redirect_to '/'
+    end
   end
 
   def new
