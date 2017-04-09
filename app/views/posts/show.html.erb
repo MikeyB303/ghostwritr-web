@@ -35,3 +35,11 @@
 <% if logged_in? %>
 	<%= link_to "Add a comment", new_post_comment_path(@post) %>
 <% end %>
+
+<% if !@post.published? && author?(@post) %>
+	<%= link_to 'Publish', post_path(:id => @post.id, :posts => { :published? => true}), method: 'PUT'%>
+<% end %>
+
+<% if @post.published? && author?(@post) %>
+	<%= link_to 'Unpublish', post_path(:id => @post.id, :posts => { :published? => false}), method: 'PUT'%>
+<% end %>
