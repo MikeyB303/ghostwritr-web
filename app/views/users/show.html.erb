@@ -2,7 +2,7 @@
 
 <h2>Posts by <%= @user.username %></h2>
 <ul id="user-published-posts-list">
-  <% @user_posts.each do |post| %>
+  <% @user_published_posts.each do |post| %>
     <li class="user-published-post"><%= link_to "#{post.title}", post_path(post) %>.</li>
   <% end %>
 </ul>
