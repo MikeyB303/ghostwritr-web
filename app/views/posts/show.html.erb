@@ -1,9 +1,11 @@
-<h1>That Young comment</h1>
-
-<h3><%= @post.title %></h3>
+<h1><%= @post.title %></h1>
 <p><%= @post.text %></p>
 
 <% if author?(@post) %>
   <%= link_to "Edit your post", edit_user_post_path(current_user, @post) %>
   <%= link_to "Delete your post", user_post_path(current_user, @post), method: "DELETE" %>
+<% end %>
+
+<% if logged_in? %>
+	<%= link_to "Add a comment", new_user_comment_path(current_user, ) %>
 <% end %>
