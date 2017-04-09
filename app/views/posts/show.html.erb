@@ -6,7 +6,9 @@
 		<div>
 			<%= "Place holder showing comment"  %>
 			<p><%= comment.body %></p> 
-			
+			<% if authorized?(comment.commenter_id) %>
+				<p><%= link_to "Delete your comment", post_comment_path(@post,comment), method: "DELETE" %></p>
+			<% end %>
 		</div>
 	<% end %>
 <% end %>
