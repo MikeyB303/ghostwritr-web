@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   get '/shakespeare' => 'home#shakespeare'
   get '/rowling' => 'home#rowling'
 
-  resources :users, only: [:new, :create]
+  resources :users, only: [:new, :create] do
+    resources :posts
+  end
   resources :sessions, only: [:new, :create, :destroy]
-  resources :posts
-
 end

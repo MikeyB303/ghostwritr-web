@@ -6,5 +6,5 @@
 </ul>
 
 <% if logged_in? %>
-  <%= link_to "New Post", new_post_path %>
+  <%= link_to "New Post", new_user_post_path(current_user) %>
 <% end %>
