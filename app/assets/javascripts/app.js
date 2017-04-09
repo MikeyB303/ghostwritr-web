@@ -4,7 +4,7 @@ $(document).ready(function () {
 
   $('app-container').replaceWith('<h1>GhostWriter</h1>' +
       "<br>" + "<textarea id='user_text'/>" + "<br>" + "<ul id='predicted_text'></ul>" +
-      "<a class='inspirationalauthor' href='/shakespeare'>Shakespeare</a>" + "<br>" + "<a class='inspirationalauthor' href='/rowling'>J-K Rowling</a>"
+      "<a class='inspirationalauthor' href='/shakespeare'>Shakespeare</a>" + "<br>" + "<a class='inspirationalauthor' href='/rowling'>J-K Rowling</a>" + "<a class='inspirationalauthor' href='/got'>George RR Martin</a>"
   );
 
   $('body').on('click', '.inspirationalauthor', function (event) {
