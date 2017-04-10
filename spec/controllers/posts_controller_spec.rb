@@ -30,5 +30,41 @@ describe PostsController do
       post :create, {params: {posts: {title: "Harry Potter 20", text: "Wacky Wizards"}}}
       expect(response).to redirect_to '/'
     end
+
+    it 'renders new if post was invalid' do
+      session[:user_id] = user.id
+      post :create, {params: {posts: {title: "Harry Potter 20"}}}
+      expect(response).to render_template(:new)
+    end
   end
+
+  describe "Edit a post" do
+    it "renders a edit template" do
+      get :edit, {params: {id: 1}}
+      expect(response).to render_template(:edit)
+    end
+  end
+# TODO fix update spec test
+#   describe "Update a post" do
+#     it 'redirects to / if vaild update' do
+#       put :update, :id => post.id, :post => {author_id: 1, title: "harry potter turns 21", text:"Wacky", published?: true}
+#       # put :update, {params:  {posts: {author_id: 1, title: "harry potter 20", text:"Wacky Wizzards", published?: true}}, {id: 1}}
+#       expect(response).to redirect_to(root_path)
+#     end
+
+#     it 'redirects to / if vaild update' do
+#       session[:user_id] = user.id
+#       put :update, {params: {posts: {author_id: 1, title: "harry potter 20", published?: true}}}
+
+#       expect(response).to render_template 'posts/edit'
+#     end
+#   end
+
+  describe "destroy a post" do
+    it "redirects to / "do
+      delete :destroy, {params: {id: published_post.id}}
+      expect(response).to redirect_to "/"
+    end
+   end
+
 end
