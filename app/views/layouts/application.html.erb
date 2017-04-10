@@ -9,17 +9,34 @@
   </head>
 
   <body>
-  	<nav>
-  		Ghost Writer
-  		<% if logged_in? %>
-        <%= link_to "#{current_user.username}", user_path(current_user) %>
-  			<%= link_to 'logout', session_path(current_user), method: :delete %>
-  		<% else %>
-  			<%= link_to 'Sign Up', new_user_path %>
-  			<%= link_to 'Log in', new_session_path %>
-  		<% end %>
-  		<%= link_to 'Home', "/" %>
-  	</nav>
-    <%= yield %>
+    <div class="container">
+      <nav>
+        <div class="nav-wrapper">
+          <a href="/" class="brand-logo right">GhostWriter</a>
+          <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+          <ul id="nav-mobile" class="left hide-on-med-and-down">
+            <% if logged_in? %>
+                <li><%= link_to "#{current_user.username}", user_path(current_user) %></li>
+                <li><%= link_to 'logout', session_path(current_user), method: :delete %></li>
+            <% else %>
+                <li><%= link_to 'Sign Up', new_user_path %></li>
+                <li><%= link_to 'Log in', new_session_path %></li>
+            <% end %>
+            <li><%= link_to 'Home', "/" %></li>
+          </ul>
+          <ul class="side-nav" id="mobile-demo">
+            <% if logged_in? %>
+                <li><%= link_to "#{current_user.username}", user_path(current_user) %></li>
+                <li><%= link_to 'logout', session_path(current_user), method: :delete %></li>
+            <% else %>
+                <li><%= link_to 'Sign Up', new_user_path %></li>
+                <li><%= link_to 'Log in', new_session_path %></li>
+            <% end %>
+            <li><%= link_to 'Home', "/" %></li>
+          </ul>
+        </div>
+      </nav>
+      <%= yield %>
+    </div>
   </body>
 </html>

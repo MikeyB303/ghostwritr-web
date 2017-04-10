@@ -1,9 +1,5 @@
 class HomeController < ApplicationController
 
-  def index
-    
-  end
-
   def shakespeare
     author_id = Author.find_by(name: 'William Shakespeare').id
     

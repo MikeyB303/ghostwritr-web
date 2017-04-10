@@ -1,45 +1,91 @@
-<h1>
-	<%= @post.title %> 
-	<% if logged_in? %>
-		<% if voted?(@post) %>
-			<%= link_to "UP VOTE", post_votes_path(@post), method: "CREATE" %>
-		<% end %>
-	<% end %>
-	
-</h1>
-<p><%= @post.text %></p>
+<div class="col s12 m7">
+  <h2 class="header"><%= @post.title %></h2>
+  <div class="card horizontal">
+    <div class="card-stacked">
+      <div class="card-content">
+        <p><%= @post.text %></p>
+        <% if logged_in? && voted?(@post) %>
+            <%= link_to post_votes_path(@post), method: 'CREATE', class: 'secondary-content' do %>
+                <i class="material-icons">grade</i>
+            <% end %>
+        <% end %>
+      </div>
+      <div class="card-action">
+        <% if logged_in? %>
+            <%= link_to "Add a comment", new_post_comment_path(@post) %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <% if @post.comments %>
-	<% @post.comments.each do |comment| %>
-		<div>
-			<%= "Place holder showing comment below"  %>
-			<p>
-				<%= comment.body %> 
-				<%= comment.votes.count %>
-				<% if voted?(comment)%>
-					<%= link_to "UP VOTE", comment_votes_path(comment), method: "CREATE" %>
-				<% end %>		
-			</p> 
-			<% if authorized?(comment.commenter_id) %>
-				<p><%= link_to "Delete your comment", post_comment_path(@post,comment), method: "DELETE" %></p>
-			<% end %>
-		</div>
-	<% end %>
+  <ul class="collection with-header">
+      <li class="collection-header"><h4>Comments</h4></li>
+    <% @post.comments.each do |comment| %>
+      <li class="collection-item">
+          <span class="secondary-content"><%= comment.votes.count %> votes</span>
+        <div>
+          <h5><%= comment.commenter.username %></h5>
+          <%= comment.body %>
+        </div>
+
+        <div class="right-align">
+          <% if authorized?(comment.commenter_id) %>
+              <%= link_to post_comment_path(@post,comment), method: 'DELETE', class: "btn-floating btn-small waves-effect waves-light red" do %>
+                  <i class="material-icons">delete</i>
+              <% end %>
+          <% end %>
+
+          <% if voted?(comment)%>
+              <%= link_to comment_votes_path(comment), method: 'CREATE', class: "btn-floating btn-small waves-effect waves-light red" do %>
+                  <i class="material-icons">thumb_up</i>
+              <% end %>
+          <% end %>
+        </div>
+
+      </li>
+    <% end %>
+  </ul>
 <% end %>
+
 
 <% if author?(@post) %>
-  <%= link_to "Edit your post", edit_post_path(@post) %>
-  <%= link_to "Delete your post", post_path(@post), method: "DELETE" %>
+    <div class="fixed-action-btn toolbar">
+      <a class="btn-floating btn-large red pulse">
+        <i class="large material-icons">menu</i>
+      </a>
+      <ul>
+        <li>
+          <%= link_to edit_post_path(@post), class: 'waves-effect waves-light' do %>
+            <i class="material-icons">mode_edit</i>
+          <% end %>
+        </li>
+
+        <li>
+          <%= link_to post_path(@post), method: "DELETE", class: 'waves-effect waves-light' do %>
+            <i class="material-icons">delete</i>
+          <% end %>
+        </li>
+
+        <% if !@post.published? && author?(@post) %>
+            <li>
+              <%= link_to post_path(:id => @post.id, :posts => { :published? => true}), method: 'PUT', class: 'waves-effect waves-light' do %>
+                  <i class="material-icons">playlist_add</i>
+              <% end %>
+            </li>
+
+
+        <% elsif @post.published? && author?(@post) %>
+            <li>
+              <%= link_to post_path(:id => @post.id, :posts => { :published? => false}), method: 'PUT', class: 'waves-effect waves-light' do %>
+                  <i class="material-icons">not_interested</i>
+              <% end %>
+            </li>
+        <% end %>
+      </ul>
+    </div>
 <% end %>
 
-<% if logged_in? %>
-	<%= link_to "Add a comment", new_post_comment_path(@post) %>
-<% end %>
 
-<% if !@post.published? && author?(@post) %>
-	<%= link_to 'Publish', post_path(:id => @post.id, :posts => { :published? => true}), method: 'PUT'%>
-<% end %>
-
-<% if @post.published? && author?(@post) %>
-	<%= link_to 'Unpublish', post_path(:id => @post.id, :posts => { :published? => false}), method: 'PUT'%>
-<% end %>
