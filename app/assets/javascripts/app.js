@@ -1,40 +1,43 @@
 $(document).ready(function () {
-  var probabilityChain;
+  var apiDestination;
 
 
-  $('app-container').replaceWith('<h1>GhostWriter</h1>' +
-      "<br>" + "<textarea id='user_text'/>" + "<br>" + "<ul id='predicted_text'></ul>" +
-      "<a class='inspirationalauthor' href='/shakespeare'>Shakespeare</a>" + "<br>" +
-      "<a class='inspirationalauthor' href='/rowling'>J-K Rowling</a>" + "<br>" +
-      "<a class='inspirationalauthor' href='/got'>George RR Martin</a>"
-  );
+  // $('app-container').replaceWith(
+  //     "<textarea disabled='true' id='user_text'/>" +
+  //     "<br>" + "<ul id='predicted_text'></ul>" +
+  //     "<button class='inspirational_author' data-author='/shakespeare'>Shakespeare</button>" + "<br>" +
+  //     "<button class='inspirational_author' data-author='/rowling'>J-K Rowling</button>" + "<br>" +
+  //     "<button class='inspirational_author' data-author='/got'>George RR Martin</button>"
+  // );
 
-  $('body').on('click', '.inspirationalauthor', function (event) {
+  $('#libraries').on('click', '.inspirational_author', function (event) {
     var $library = $(this);
     $('#predicted_text').empty();
-    $('#user_text').val('');
-    event.preventDefault();
-    $.ajax({
-      url: $library.attr('href'),
-      method: 'get'
-    }).done(function (response) {
-      probabilityChain = response;
-    });
-
+    $('#user-text').val('');
+    apiDestination = $library.data('author');
+    $('#user-text').prop('disabled', false);
   });
 
-  $('body').on('keyup', '#user_text', function (event) {
+  $('#post-form').on('keyup', '#user-text', function (event) {
     if(event.which === 32){
-      var userText = lastWord($(this).val());
-      var possibleWords = probabilityChain[userText];
-      var filteredProbabilities = formatPredictions(possibleWords);
-      renderWords(filteredProbabilities);
+    console.log(apiDestination);
+      var userText = $(this).serialize();
+      var response = $.ajax({
+        url: apiDestination,
+        data: userText
+      });
+
+      response.done(function (predictions) {
+        console.log(predictions)
+      });
+      // var filteredProbabilities = formatPredictions(possibleWords);
+      // renderWords(filteredProbabilities);
     }
   });
 
   function lastWord(input) {
     var inputArray = input.split(' ');
-    return inputArray[inputArray.length - 2].toLowerCase()
+    return inputArray[inputArray.length - 1].toLowerCase()
   }
 
   function formatPredictions(predictions) {
