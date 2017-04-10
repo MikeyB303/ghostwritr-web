@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
   end
 
   def author?(post)
-    return true if current_user == post.author
+    current_user == post.author
   end
 
   def get_predictions(words, author_id)
@@ -33,7 +33,8 @@ class ApplicationController < ActionController::Base
     else
       words = user_input[0]
     end
-  
-    Work.where('previous_term in (?)', words).order(probability: :desc).limit(10)
+
+    Work.where('previous_term in (?) and author_id = ?', words, author_id).order(probability: :desc).limit(10)
+
   end
 end

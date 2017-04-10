@@ -12,7 +12,7 @@ class HomeController < ApplicationController
   
   def rowling
     author_id = Author.find_by(name: 'J-K Rowling').id
-    
+
     render json: get_predictions(params[:posts][:text], author_id)
   end
 
