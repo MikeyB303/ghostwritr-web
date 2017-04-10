@@ -30,6 +30,7 @@ describe UsersController do
     let!(:user) {User.create!(username: "mikey", email: "test@email.com", password: "password")}
     let!(:published_post) {Post.create!(author_id: user.id, title: "Harry Potter 20", text: "Wacky Wizards", published?: true)}
     let!(:unpublished_post) {Post.create!(author_id: user.id, title: "Harry Potter 20", text: "Wacky Wizards", published?: false)}
+    
     it 'renders users#show' do
       get :show, {params: {id: user.id}}
       expect(response).to render_template'show'
