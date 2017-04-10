@@ -5,7 +5,8 @@ class CreateWorks < ActiveRecord::Migration[5.0]
       t.string :next_word, null: false
       t.float :probability, null: false
       t.integer :author_id, null: false
-      
     end
+    
+      add_index :works, :author_id
   end
 end
