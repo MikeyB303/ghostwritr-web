@@ -43,8 +43,6 @@ class PostsController < ApplicationController
 
   def destroy
     post = Post.find_by(id: params[:id])
-    puts "*" * 30
-    p params
     post.destroy
     redirect_to '/'
   end
