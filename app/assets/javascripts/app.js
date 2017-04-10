@@ -1,4 +1,5 @@
 $(document).on('turbolinks:load', function () {
+  $(".button-collapse").sideNav();
   var apiDestination;
 
   $('#libraries').on('click', '.inspirational_author', function (event) {
@@ -35,4 +36,6 @@ $(document).on('turbolinks:load', function () {
           + (wordsArray[i].probability * 100).toFixed(2) + '% </li>')
     }
   }
+
+
 });

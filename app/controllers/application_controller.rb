@@ -23,5 +23,17 @@ class ApplicationController < ActionController::Base
     return true if current_user == post.author
   end
 
+  def get_predictions(words, author_id)
+    user_input = words.split
   
+    if user_input.length >= 3
+      words = [user_input[-3..-1].join('_'), user_input[-2..-1].join('_'), user_input[-1]]
+    elsif user_input.length == 2
+      words = [user_input[-2..-1].join('_'), user_input[-1]]
+    else
+      words = user_input[0]
+    end
+  
+    Work.where('previous_term in (?)', words).order(probability: :desc).limit(10)
+  end
 end
