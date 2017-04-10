@@ -5,54 +5,21 @@ class HomeController < ApplicationController
   end
 
   def shakespeare
-    author = Author.find_by(name: 'William Shakespeare')
-    user_input = params[:posts][:text].split
+    author_id = Author.find_by(name: 'William Shakespeare').id
     
-    if user_input.length >= 3
-      words = [user_input[-3..-1].join('_'), user_input[-2..-1].join('_'), user_input[-1]]
-    elsif user_input.length == 2
-      words = [user_input[-2..-1].join('_'), user_input[-1]]
-    else
-      words = user_input[0]
-    end
-    
-    predictions = author.works.where('previous_term in (?)', words).order(probability: :desc).limit(10)
-    
-    render json: predictions
+    render json: get_predictions(params[:posts][:text], author_id)
   end
   
   def rowling
-    author = Author.find_by(name: 'J-K Rowling')
-    user_input = params[:posts][:text].split
-  
-    if user_input.length >= 3
-      words = [user_input[-3..-1].join('_'), user_input[-2..-1].join('_'), user_input[-1]]
-    elsif user_input.length == 2
-      words = [user_input[-2..-1].join('_'), user_input[-1]]
-    else
-      words = user_input[0]
-    end
-  
-    predictions = author.works.where('previous_term in (?)', words).order(probability: :desc).limit(10)
-  
-    render json: predictions
+    author_id = Author.find_by(name: 'J-K Rowling').id
+
+    render json: get_predictions(params[:posts][:text], author_id)
   end
 
   def got
-    author = Author.find_by(name: 'George R.R. Martin')
-    user_input = params[:posts][:text].split
-  
-    if user_input.length >= 3
-      words = [user_input[-3..-1].join('_'), user_input[-2..-1].join('_'), user_input[-1]]
-    elsif user_input.length == 2
-      words = [user_input[-2..-1].join('_'), user_input[-1]]
-    else
-      words = user_input[0]
-    end
-  
-    predictions = author.works.where('previous_term in (?)', words).order(probability: :desc).limit(10)
-  
-    render json: predictions
+    author_id = Author.find_by(name: 'George R.R. Martin').id
+    
+    render json: get_predictions(params[:posts][:text], author_id)
   end
 
 

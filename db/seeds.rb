@@ -40,7 +40,7 @@ authors.each {|author| Author.create!(name: author)}
 start_time = Time.now
 
 j = 0
-Work.bulk_insert(:previous_term, :next_word, :probability, :author_id) do |works|
+Work.bulk_insert(:previous_term, :next_word, :probability, :author_id, set_size: 1000) do |works|
   shakespeare.each do |previous_term, probable_terms|
     puts "Currently on iteration #{j} of shakespeare"
     probable_terms.each do |next_word, probability|
@@ -51,7 +51,7 @@ Work.bulk_insert(:previous_term, :next_word, :probability, :author_id) do |works
 end
 
 i = 0
-Work.bulk_insert(:previous_term, :next_word, :probability, :author_id) do |works|
+Work.bulk_insert(:previous_term, :next_word, :probability, :author_id, set_size: 1000) do |works|
   rowling.each do |previous_term, probable_terms|
     puts "Currently on iteration #{i} of rowling"
     probable_terms.each do |next_word, probability|
@@ -63,7 +63,7 @@ end
 
 
 k = 0
-Work.bulk_insert(:previous_term, :next_word, :probability, :author_id) do |works|
+Work.bulk_insert(:previous_term, :next_word, :probability, :author_id, set_size: 1000) do |works|
   martin.each do |previous_term, probable_terms|
     puts "Currently on iteration #{k} of martin"
     probable_terms.each do |next_word, probability|
