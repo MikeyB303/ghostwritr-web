@@ -1,15 +1,20 @@
-<div class="collection">
+<ul class="collection">
   <% @posts.each do |post|%>
-      <%= link_to post_path(post), class: 'collection-item' do %>
-          <%= post.title %>
-          <span class='badge'><%= post.votes.count %> votes</span>
-      <%	end  %>
+    <li class="collection-item avatar">
+      <img src="https://www.biography.com/.image/t_share/MTE1ODA0OTcxNzgzMzkwNzMz/william-shakespeare-194895-1-402.jpg" alt="" class="circle">
+      <span class="title"><%= link_to post.title, post_path(post)%></span>
+      <p>Author:
+        <%= post.author.username %>
+      </p>
+      <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+    </li>
   <% end %>
-  <!--<a href="#!" class="collection-item"><span class="new badge">4</span>Alan</a>-->
-  <!--<a href="#!" class="collection-item">Alan</a>-->
-  <!--<a href="#!" class="collection-item"><span class="badge">14</span>Alan</a>-->
-</div>
+</ul>
 
 <% if logged_in? %>
-  <%= link_to "New Post", new_post_path %>
+    <%= link_to new_post_path, class: 'btn-floating btn-large waves-effect waves-light red right pulse' do %>
+        <i class="material-icons">add</i>
+    <% end %>
 <% end %>
+
+
