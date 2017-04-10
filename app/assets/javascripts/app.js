@@ -28,37 +28,31 @@ $(document).ready(function () {
       });
 
       response.done(function (predictions) {
-        console.log(predictions)
+        console.log(predictions);
+        renderWords(predictions);
       });
-      // var filteredProbabilities = formatPredictions(possibleWords);
-      // renderWords(filteredProbabilities);
     }
   });
 
-  function lastWord(input) {
-    var inputArray = input.split(' ');
-    return inputArray[inputArray.length - 1].toLowerCase()
-  }
-
-  function formatPredictions(predictions) {
-    var probableWords = [];
-    $.each(predictions, function (word, probability) {
-      if (probability > 0.003){
-        probableWords.push({word: word, probability: probability});
-      }
-    });
-    probableWords.sort(function (a, b) {
-      return b.probability - a.probability
-    });
-
-    return probableWords
-  }
+  // function formatPredictions(predictions) {
+  //   var probableWords = [];
+  //   $.each(predictions, function (word) {
+  //     if (probability > 0.01){
+  //       probableWords.push({word: word, probability: probability});
+  //     }
+  //   });
+  //   probableWords.sort(function (a, b) {
+  //     return b.probability - a.probability
+  //   });
+  //
+  //   return probableWords
+  // }
 
   function renderWords(wordsArray) {
     var $predictionField = $('#predicted_text');
     $predictionField.empty();
     for(var i = 0; i < wordsArray.length; i++){
-      $predictionField.append('<li>' + wordsArray[i].word + ' -- '
+      $predictionField.append('<li>' + wordsArray[i].next_word + ' -- '
           + (wordsArray[i].probability * 100).toFixed(2) + '% </li>')
     }
   }

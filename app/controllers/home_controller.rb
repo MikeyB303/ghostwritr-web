@@ -16,19 +16,43 @@ class HomeController < ApplicationController
       words = user_input[0]
     end
     
-    st = author.works.where('previous_term in (?)', words).order(probability: :desc)
+    predictions = author.works.where('previous_term in (?)', words).order(probability: :desc).limit(10)
     
-    render json: st
+    render json: predictions
   end
   
   def rowling
-    file = File.read('j-k-rowling-probability-chain.json')
-    render json: file
+    author = Author.find_by(name: 'J-K Rowling')
+    user_input = params[:posts][:text].split
+  
+    if user_input.length >= 3
+      words = [user_input[-3..-1].join('_'), user_input[-2..-1].join('_'), user_input[-1]]
+    elsif user_input.length == 2
+      words = [user_input[-2..-1].join('_'), user_input[-1]]
+    else
+      words = user_input[0]
+    end
+  
+    predictions = author.works.where('previous_term in (?)', words).order(probability: :desc).limit(10)
+  
+    render json: predictions
   end
 
   def got
-    file = File.read('got-probability-chain.json')
-    render json: file
+    author = Author.find_by(name: 'George R.R. Martin')
+    user_input = params[:posts][:text].split
+  
+    if user_input.length >= 3
+      words = [user_input[-3..-1].join('_'), user_input[-2..-1].join('_'), user_input[-1]]
+    elsif user_input.length == 2
+      words = [user_input[-2..-1].join('_'), user_input[-1]]
+    else
+      words = user_input[0]
+    end
+  
+    predictions = author.works.where('previous_term in (?)', words).order(probability: :desc).limit(10)
+  
+    render json: predictions
   end
 
 
