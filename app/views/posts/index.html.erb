@@ -1,11 +1,14 @@
-<ul id="post-list">
+<div class="collection">
   <% @posts.each do |post|%>
-    <li class="post-list-item">
-      Title: <%= link_to "#{post.title}", post_path(post) %>. 
-      Votes: <%= post.votes.count %> 
-    </li>
+      <%= link_to post_path(post), class: 'collection-item' do %>
+          <%= post.title %>
+          <span class='badge'><%= post.votes.count %> votes</span>
+      <%	end  %>
   <% end %>
-</ul>
+  <!--<a href="#!" class="collection-item"><span class="new badge">4</span>Alan</a>-->
+  <!--<a href="#!" class="collection-item">Alan</a>-->
+  <!--<a href="#!" class="collection-item"><span class="badge">14</span>Alan</a>-->
+</div>
 
 <% if logged_in? %>
   <%= link_to "New Post", new_post_path %>
