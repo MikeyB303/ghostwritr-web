@@ -1,59 +1,37 @@
-$(document).ready(function () {
-  var probabilityChain;
+$(document).on('turbolinks:load', function () {
+  var apiDestination;
 
-
-  $('app-container').replaceWith('<h1>GhostWriter</h1>' +
-      "<br>" + "<textarea id='user_text'/>" + "<br>" + "<ul id='predicted_text'></ul>" +
-      "<a class='inspirationalauthor' href='/shakespeare'>Shakespeare</a>" + "<br>" + "<a class='inspirationalauthor' href='/rowling'>J-K Rowling</a>" + "<br>" + "<a class='inspirationalauthor' href='/got'>George RR Martin</a>"
-  );
-
-  $('body').on('click', '.inspirationalauthor', function (event) {
+  $('#libraries').on('click', '.inspirational_author', function (event) {
     var $library = $(this);
     $('#predicted_text').empty();
-    $('#user_text').val('');
-    event.preventDefault();
-    $.ajax({
-      url: $library.attr('href'),
-      method: 'get'
-    }).done(function (response) {
-      probabilityChain = response;
-    });
-
+    $('#user-text').val('');
+    apiDestination = $library.data('author');
+    $('#user-text').prop('disabled', false);
+  //  TODO fix text area not enabling without hard reset
   });
 
-  $('body').on('keyup', '#user_text', function (event) {
+  $('#post-form').on('keydown', '#user-text', function (event) {
     if(event.which === 32){
-      var userText = lastWord($(this).val());
-      var possibleWords = probabilityChain[userText];
-      var filteredProbabilities = formatPredictions(possibleWords);
-      renderWords(filteredProbabilities);
+    console.log(apiDestination);
+      var userText = $(this).serialize();
+      var response = $.ajax({
+        url: apiDestination,
+        data: userText
+      });
+
+      response.done(function (predictions) {
+        console.log(predictions);
+        renderWords(predictions);
+      });
     }
   });
 
-  function lastWord(input) {
-    var inputArray = input.split(' ');
-    return inputArray[inputArray.length - 2].toLowerCase()
-  }
-
-  function formatPredictions(predictions) {
-    var probableWords = [];
-    $.each(predictions, function (word, probability) {
-      if (probability > 0.01){
-        probableWords.push({word: word, probability: probability});
-      }
-    });
-    probableWords.sort(function (a, b) {
-      return b.probability - a.probability
-    });
-
-    return probableWords
-  }
 
   function renderWords(wordsArray) {
     var $predictionField = $('#predicted_text');
     $predictionField.empty();
     for(var i = 0; i < wordsArray.length; i++){
-      $predictionField.append('<li>' + wordsArray[i].word + ' -- '
+      $predictionField.append('<li>' + wordsArray[i].next_word + ' -- '
           + (wordsArray[i].probability * 100).toFixed(2) + '% </li>')
     }
   }

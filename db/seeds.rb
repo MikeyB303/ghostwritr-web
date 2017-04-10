@@ -28,3 +28,51 @@ end
   votable_type: ['Comment', 'Post'].sample
   )
 end
+
+rowling = JSON.parse(File.read("#{File.expand_path File.dirname(__FILE__)}/corpus_files/harry-potter.json"))
+shakespeare = JSON.parse(File.read("#{File.expand_path File.dirname(__FILE__)}/corpus_files/shakespeare.json"))
+martin = JSON.parse(File.read("#{File.expand_path File.dirname(__FILE__)}/corpus_files/game-of-thrones.json"))
+
+authors = ['William Shakespeare', 'J-K Rowling', 'George R.R. Martin']
+
+authors.each {|author| Author.create!(name: author)}
+
+start_time = Time.now
+
+j = 0
+Work.bulk_insert(:previous_term, :next_word, :probability, :author_id) do |works|
+  shakespeare.each do |previous_term, probable_terms|
+    puts "Currently on iteration #{j} of shakespeare"
+    probable_terms.each do |next_word, probability|
+      works.add previous_term: previous_term, next_word: next_word, probability: probability, author_id: 1
+    end
+    j += 1
+  end
+end
+
+i = 0
+Work.bulk_insert(:previous_term, :next_word, :probability, :author_id) do |works|
+  rowling.each do |previous_term, probable_terms|
+    puts "Currently on iteration #{i} of rowling"
+    probable_terms.each do |next_word, probability|
+      works.add previous_term: previous_term, next_word: next_word, probability: probability, author_id: 2
+    end
+    i += 1
+  end
+end
+
+
+k = 0
+Work.bulk_insert(:previous_term, :next_word, :probability, :author_id) do |works|
+  martin.each do |previous_term, probable_terms|
+    puts "Currently on iteration #{k} of martin"
+    probable_terms.each do |next_word, probability|
+      works.add previous_term: previous_term, next_word: next_word, probability: probability, author_id: 3
+    end
+    k += 1
+  end
+end
+
+end_time = Time.now
+
+puts (end_time - start_time)/60

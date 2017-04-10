@@ -6,14 +6,22 @@
       <% end %>
     </ul>
 <% end %>
-<%= form_for :posts, url: posts_path do |f| %>
+
+<div id="libraries">
+  <button class='inspirational_author' data-author='/shakespeare'>Shakespeare</button><br>
+  <button class='inspirational_author' data-author='/rowling'>J-K Rowling</button><br>
+  <button class='inspirational_author' data-author='/got'>George RR Martin</button>
+</div>
+
+<div id="predictions">
+  <ul id='predicted_text'></ul>
+</div>
+<%= form_for :posts, url: posts_path, html: {id: 'post-form'} do |f| %>
   <%= f.label :title %>:
-  <%= f.text_field :title %><br />
+  <%= f.text_field :title %><br/>
 
   <%= f.label :text %>:
-  <%= f.text_area :text %><br />
-
-  
+  <%= f.text_area :text, disabled: true, id: 'user-text' %><br />
 
   <%= f.submit %>
 <% end %>

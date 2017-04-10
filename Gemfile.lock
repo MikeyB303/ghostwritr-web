@@ -44,6 +44,8 @@ GEM
     bcrypt (3.1.11)
     bindex (0.5.0)
     builder (3.2.3)
+    bulk_insert (1.4.0)
+      activerecord (>= 4.1.0)
     byebug (9.0.6)
     capybara (2.13.0)
       addressable
@@ -89,6 +91,7 @@ GEM
     nio4r (2.0.0)
     nokogiri (1.7.1)
       mini_portile2 (~> 2.1.0)
+    parallel (1.11.1)
     pg (0.20.0)
     pry (0.10.4)
       coderay (~> 1.1.0)
@@ -196,6 +199,7 @@ PLATFORMS
 
 DEPENDENCIES
   bcrypt (~> 3.1.7)
+  bulk_insert
   byebug
   capybara
   faker
@@ -203,6 +207,7 @@ DEPENDENCIES
   jquery-rails
   launchy
   listen (~> 3.0.5)
+  parallel
   pg (~> 0.18)
   pry-rails
   puma (~> 3.0)
