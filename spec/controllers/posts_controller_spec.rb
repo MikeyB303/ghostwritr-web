@@ -44,21 +44,19 @@ describe PostsController do
       expect(response).to render_template(:edit)
     end
   end
-# TODO fix update spec test
-#   describe "Update a post" do
-#     it 'redirects to / if vaild update' do
-#       put :update, :id => post.id, :post => {author_id: 1, title: "harry potter turns 21", text:"Wacky", published?: true}
-#       # put :update, {params:  {posts: {author_id: 1, title: "harry potter 20", text:"Wacky Wizzards", published?: true}}, {id: 1}}
-#       expect(response).to redirect_to(root_path)
-#     end
 
-#     it 'redirects to / if vaild update' do
-#       session[:user_id] = user.id
-#       put :update, {params: {posts: {author_id: 1, title: "harry potter 20", published?: true}}}
+  describe "Update a post" do
+    it 'redirects to / if vaild update' do
+      put :update, params: {:id => published_post.id, :posts => {author_id: user.id, title: "harry potter turns 21", text:"Wacky", published?: true}}
+    
+      expect(response).to redirect_to(root_path)
+    end
 
-#       expect(response).to render_template 'posts/edit'
-#     end
-#   end
+    it 'renders posts#edit if invaild update' do
+      put :update, params: {:id => published_post.id, :posts => {author_id: user.id, title: ""}}
+      expect(response).to render_template 'posts/edit'
+    end
+  end
 
   describe "destroy a post" do
     it "redirects to / "do
