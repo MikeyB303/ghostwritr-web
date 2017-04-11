@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
   end
   
   def query_database(author, n_size, words)
-    p author.works.where(n_size: n_size).where(previous_term: words).order(probability: :desc).limit(3).pluck(:next_word)
+    p author.works.where(n_size: n_size).where(previous_term: words).order(probability: :desc).limit(5).pluck(:next_word)
   # TODO: Figure out eager Loading
   end
 
