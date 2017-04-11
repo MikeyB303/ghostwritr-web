@@ -25,10 +25,10 @@ describe PostsController do
       expect(response).to render_template 'new'
     end
 
-    it 'redirects to / if valid posting' do
+    it 'redirects to post#show if valid posting' do
       session[:user_id] = user.id
       post :create, {params: {posts: {title: "Harry Potter 20", text: "Wacky Wizards"}}}
-      expect(response).to redirect_to '/'
+      expect(response).to redirect_to "/posts/#{posts.last.id}"
     end
 
     it 'renders new if post was invalid' do
@@ -46,10 +46,10 @@ describe PostsController do
   end
 
   describe "Update a post" do
-    it 'redirects to / if vaild update' do
+    it 'redirects to post#show if vaild update' do
       put :update, params: {:id => published_post.id, :posts => {author_id: user.id, title: "harry potter turns 21", text:"Wacky", published?: true}}
     
-      expect(response).to redirect_to(root_path)
+      expect(response).to redirect_to(post_path)
     end
 
     it 'renders posts#edit if invaild update' do
