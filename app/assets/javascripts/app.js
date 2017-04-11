@@ -8,7 +8,6 @@ $(document).on('turbolinks:load', function () {
     $('#user-text').val('');
     apiDestination = $library.data('author');
     $('#user-text').prop('disabled', false);
-  //  TODO fix text area not enabling without hard reset
   });
 
   $('#post-form').on('keydown', '#user-text', function (event) {

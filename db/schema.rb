@@ -60,6 +60,8 @@ ActiveRecord::Schema.define(version: 20170409210750) do
     t.string  "next_word",     null: false
     t.float   "probability",   null: false
     t.integer "author_id",     null: false
+    t.integer "n_size",        null: false
+    t.index ["author_id", "n_size"], name: "index_works_on_author_id_and_n_size", using: :btree
   end
 
 end
