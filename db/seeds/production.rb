@@ -1,3 +1,19 @@
+rowling = [
+  JSON.parse(File.read("#{File.expand_path File.dirname(__FILE__)}/corpus_files/harry-potter-n-1.json")),
+  JSON.parse(File.read("#{File.expand_path File.dirname(__FILE__)}/corpus_files/harry-potter-n-2.json")),
+  JSON.parse(File.read("#{File.expand_path File.dirname(__FILE__)}/corpus_files/harry-potter-n-3.json"))
+]
+shakespeare = [
+  JSON.parse(File.read("#{File.expand_path File.dirname(__FILE__)}/corpus_files/shakespeare-n-1.json")),
+  JSON.parse(File.read("#{File.expand_path File.dirname(__FILE__)}/corpus_files/shakespeare-n-2.json")),
+  JSON.parse(File.read("#{File.expand_path File.dirname(__FILE__)}/corpus_files/shakespeare-n-3.json"))
+]
+martin = [
+  JSON.parse(File.read("#{File.expand_path File.dirname(__FILE__)}/corpus_files/game-of-thrones-n-1.json")),
+  JSON.parse(File.read("#{File.expand_path File.dirname(__FILE__)}/corpus_files/game-of-thrones-n-2.json")),
+  JSON.parse(File.read("#{File.expand_path File.dirname(__FILE__)}/corpus_files/game-of-thrones-n-3.json"))
+]
+
 authors = ['William Shakespeare', 'J-K Rowling', 'George R.R. Martin']
 
 authors.each {|author| Author.create!(name: author)}
