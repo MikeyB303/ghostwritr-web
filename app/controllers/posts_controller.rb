@@ -19,7 +19,7 @@ class PostsController < ApplicationController
     new_post = Post.new(post_params)
     new_post.author_id = current_user.id
     if new_post.save
-      redirect_to root_path
+      redirect_to post_path(new_post)
     else
       @errors = new_post.errors.full_messages
       render 'posts/new'
@@ -34,7 +34,7 @@ class PostsController < ApplicationController
     post = Post.find_by(id: params[:id])
     post.assign_attributes(post_params)
     if post.save
-      redirect_to root_path
+      redirect_to post_path(post)
     else
       @errors = post.errors.full_messages
       render 'posts/edit'
