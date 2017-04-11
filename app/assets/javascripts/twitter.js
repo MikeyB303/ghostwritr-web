@@ -1,6 +1,6 @@
-$(document).on('ready', function(){
+$(document).on('turbolinks:load', function(){
 
-	  $('#tweet-container').click(function(event) {
+	  $(document).on('click', '#tweet-container', function(event) {
     		event.preventDefault();
     		var $target = $(this);
 
