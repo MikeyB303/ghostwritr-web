@@ -24,12 +24,13 @@ class ApplicationController < ActionController::Base
   end
   
   def query_database(author, n_size, words)
-    author.works.where(n_size: n_size).where(previous_term: words).order(probability: :desc).limit(3)
+    p author.works.where(n_size: n_size).where(previous_term: words).order(probability: :desc).limit(3).pluck(:next_word)
   # TODO: Figure out eager Loading
   end
 
   def get_predictions(words, author)
     user_input = words.gsub(/[,.;:'"]/, '').split
+    
   
     if user_input.length >= 3
       puts "3" * 60
@@ -51,7 +52,7 @@ class ApplicationController < ActionController::Base
       probabilities = query_database(author, 1, words)
       return probabilities if probabilities.length > 0
     end
-
+    
 
   end
 end

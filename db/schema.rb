@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 20170409210750) do
     t.float   "probability",   null: false
     t.integer "author_id",     null: false
     t.integer "n_size",        null: false
-    t.index ["author_id", "n_size"], name: "index_works_on_author_id_and_n_size", using: :btree
+    t.index ["author_id", "n_size", "previous_term"], name: "index_works_on_author_id_and_n_size_and_previous_term", using: :btree
   end
 
 end
