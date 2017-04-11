@@ -5,7 +5,7 @@ $(document).on('turbolinks:load', function () {
   $('#libraries').on('click', '.inspirational_author', function (event) {
     var $library = $(this);
     $('#predicted_text').empty();
-    $('#user-text').val('');
+    // $('#user-text').val('');
     apiDestination = $library.data('author');
     $('#user-text').prop('disabled', false);
   });
