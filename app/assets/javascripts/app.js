@@ -83,5 +83,4 @@ $(document).on('turbolinks:load', function () {
       $predictionField.append("<a class='collection-item'>" + wordsArray[i] + "</a>")
     }
   }
-
 });
