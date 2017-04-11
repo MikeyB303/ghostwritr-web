@@ -33,6 +33,4 @@ $(document).on('turbolinks:load', function () {
       $predictionField.append('<li>' + wordsArray[i] + '</li>')
     }
   }
-
-
 });
