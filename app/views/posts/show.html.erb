@@ -4,7 +4,7 @@
     <div class="card-stacked">
       <div class="card-content">
         <p>Written by: <%= link_to "#{@post.author.username}", user_path(@post.author.id) %></p>
-        <p><%= @post.text %></p>
+        <p id='post-text'><%= @post.text %></p>
         <% if logged_in? && voted?(@post) %>
             <%= link_to post_votes_path(@post), method: 'CREATE', class: 'secondary-content' do %>
                 <i class="material-icons">grade</i>
@@ -20,6 +20,7 @@
   </div>
 </div>
 
+<div id="shareBtn" class="btn btn-success clearfix">Share to Facebook</div>
 
 <% if @post.comments %>
   <ul class="collection with-header">
