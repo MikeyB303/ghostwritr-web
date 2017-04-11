@@ -52,7 +52,7 @@ $(document).on('turbolinks:load', function () {
       }
     }
 
-    else if(event.which === 13){
+    else if(event.which === 9){
       event.preventDefault();
       var $userText = $('#user-text');
       $active = $predictions.find('.active');
