@@ -28,14 +28,14 @@
 <div class="row">
   <%= form_for :posts, url: posts_path, html: {id: 'post-form'}, class: 'col s12' do |f| %>
       <div class="row">
-        <div class="input-field col s6">
+        <div class="input-field col s12">
           <%= f.text_field :title %>
           <%= f.label :title %>
         </div>
       </div>
 
       <div class="row">
-        <div class="input-field col s11">
+        <div class="input-field col s12">
           <%= f.text_area :text, disabled: true, id: 'user-text', class: 'materialize-textarea' %>
           <%= f.label :text %>
         </div>
