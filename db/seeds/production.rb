@@ -16,7 +16,7 @@ martin = [
 
 authors = ['William Shakespeare', 'J-K Rowling', 'George R.R. Martin']
 
-authors.each {|author| Author.create!(name: author)}
+authors.each {|author| Author.find_or_create_by(name: author)}
 
 Work.bulk_insert(:previous_term, :next_word, :probability, :author_id, :n_size, set_size: 1000) do |works|
   shakespeare.each_with_index do |file, index|
