@@ -7,24 +7,51 @@
     </ul>
 <% end %>
 
-<div id="libraries">
-  <button class='inspirational_author' data-author='/shakespeare'>Shakespeare</button><br>
-  <button class='inspirational_author' data-author='/rowling'>J-K Rowling</button><br>
-  <button class='inspirational_author' data-author='/got'>George RR Martin</button>
+<div class="row">
+  <div class="input-field col s6">
+    <select class="icons" id="libraries">
+      <option value="" disabled selected>Choose your option</option>
+      <option value="shakespeare" data-author='/shakespeare'
+              data-icon="https://www.biography.com/.image/t_share/MTE1ODA0OTcxNzgzMzkwNzMz/william-shakespeare-194895-1-402.jpg"
+              class="left circle inspirational_author">Shakespeare</option>
+      <option value="rowling" data-author='/rowling'
+              data-icon="http://cdn.hercampus.com/s3fs-public/2015/05/04/JK-Rowling-009.jpg"
+              class="left circle inspirational_author">J-K Rowling</option>
+      <option value="got" data-author='/got'
+              data-icon="http://photos.vanityfair.com/2014/03/14/532359fe74f8a09c34ba3b65_george-rr-martin-tout.jpg"
+              class="left circle inspirational_author">George RR Martin</option>
+    </select>
+    <label>Select an Author</label>
+  </div>
 </div>
 
-<div id="predictions">
-  <ul id='predicted_text'></ul>
-</div>
-<%= form_for :posts, url: posts_path, html: {id: 'post-form'} do |f| %>
-  <%= f.label :title %>:
-  <%= f.text_field :title %><br/>
+<div class="row">
+  <%= form_for :posts, url: posts_path, html: {id: 'post-form'}, class: 'col s12' do |f| %>
+      <div class="row">
+        <div class="input-field col s6">
+          <%= f.text_field :title %>
+          <%= f.label :title %>
+        </div>
+      </div>
 
-  <%= f.label :text %>:
-  <%= f.text_area :text, disabled: true, id: 'user-text' %><br />
-  <% if logged_in? %>
-    <%= f.submit %>
-  <% else %>
-    <p><%= link_to "Login", new_session_path %> to save your post!</p>
+      <div class="row">
+        <div class="input-field col s11">
+          <%= f.text_area :text, disabled: true, id: 'user-text', class: 'materialize-textarea' %>
+          <%= f.label :text %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="collection hide" id="predictions">
+        </div>
+      </div>
+
+      <div class="row">
+        <% if logged_in? %>
+            <%= f.submit :submit, class: "btn waves-effect waves-light"%>
+        <% else %>
+            <p><%= link_to "Login", new_session_path %> to save your post!</p>
+        <% end %>
+      </div>
   <% end %>
-<% end %>
+</div>
