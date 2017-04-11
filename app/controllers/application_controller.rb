@@ -22,19 +22,36 @@ class ApplicationController < ActionController::Base
   def author?(post)
     current_user == post.author
   end
+  
+  def query_database(author, n_size, words)
+    author.works.where(n_size: n_size).where(previous_term: words).order(probability: :desc).limit(3)
+  # TODO: Figure out eager Loading
+  end
 
-  def get_predictions(words, author_id)
-    user_input = words.split
+  def get_predictions(words, author)
+    user_input = words.gsub(/[,.;:'"]/, '').split
   
     if user_input.length >= 3
-      words = [user_input[-3..-1].join('_'), user_input[-2..-1].join('_'), user_input[-1]]
-    elsif user_input.length == 2
-      words = [user_input[-2..-1].join('_'), user_input[-1]]
-    else
-      words = user_input[0]
+      puts "3" * 60
+      words = [user_input[-3..-1].join('_')]
+      probabilities = query_database(author, 3, words)
+      return probabilities if probabilities.length > 0
+    end
+    
+    if user_input.length >= 2
+      puts "2" * 60
+      words = [user_input[-2..-1].join('_')]
+      probabilities = query_database(author, 2, words)
+      return probabilities if probabilities.length > 0
+    end
+    
+    if user_input.length >= 1
+      puts "1" * 60
+      words = user_input[-1]
+      probabilities = query_database(author, 1, words)
+      return probabilities if probabilities.length > 0
     end
 
-    Work.where('previous_term in (?) and author_id = ?', words, author_id).order(probability: :desc).limit(10)
 
   end
 end
