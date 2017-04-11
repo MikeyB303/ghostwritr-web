@@ -8,6 +8,6 @@ class CreateWorks < ActiveRecord::Migration[5.0]
       t.integer :n_size, null:false
     end
     
-      add_index :works, [:author_id, :n_size]
+      add_index :works, [:author_id, :n_size, :previous_term]
   end
 end
