@@ -1,12 +1,11 @@
 $(document).on('turbolinks:load', function () {
   $(".button-collapse").sideNav();
+  $('select').material_select();
   var apiDestination;
 
-  $('#libraries').on('click', '.inspirational_author', function (event) {
-    var $library = $(this);
+  $('#libraries').change(function () {
     $('#predicted_text').empty();
-    // $('#user-text').val('');
-    apiDestination = $library.data('author');
+    apiDestination = $(this).find(':selected').data('author');
     $('#user-text').prop('disabled', false);
   });
 

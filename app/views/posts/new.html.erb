@@ -7,15 +7,32 @@
     </ul>
 <% end %>
 
-<div id="libraries">
-  <button class='inspirational_author' data-author='/shakespeare'>Shakespeare</button><br>
-  <button class='inspirational_author' data-author='/rowling'>J-K Rowling</button><br>
-  <button class='inspirational_author' data-author='/got'>George RR Martin</button>
+<div class="input-field col s12 m6">
+  <select class="icons" id="libraries">
+    <option value="" disabled selected>Choose your option</option>
+    <option value="shakespeare" data-author='/shakespeare'
+            data-icon="https://www.biography.com/.image/t_share/MTE1ODA0OTcxNzgzMzkwNzMz/william-shakespeare-194895-1-402.jpg"
+            class="left circle inspirational_author">Shakespeare</option>
+    <option value="rowling" data-author='/rowling'
+            data-icon="http://cdn.hercampus.com/s3fs-public/2015/05/04/JK-Rowling-009.jpg"
+            class="left circle inspirational_author">J-K Rowling</option>
+    <option value="got" data-author='/got'
+            data-icon="http://photos.vanityfair.com/2014/03/14/532359fe74f8a09c34ba3b65_george-rr-martin-tout.jpg"
+            class="left circle inspirational_author">George RR Martin</option>
+  </select>
+  <label>Select an Author</label>
 </div>
+
+<!--<div id="libraries">-->
+  <!--<button class='inspirational_author' data-author='/shakespeare'>Shakespeare</button><br>-->
+  <!--<button class='inspirational_author' data-author='/rowling'>J-K Rowling</button><br>-->
+  <!--<button class='inspirational_author' data-author='/got'>George RR Martin</button>-->
+<!--</div>-->
 
 <div id="predictions">
   <ul id='predicted_text'></ul>
 </div>
+
 <%= form_for :posts, url: posts_path, html: {id: 'post-form'} do |f| %>
   <%= f.label :title %>:
   <%= f.text_field :title %><br/>
