@@ -56,19 +56,32 @@ $(document).on('turbolinks:load', function () {
       event.preventDefault();
       var $userText = $('#user-text');
       $active = $predictions.find('.active');
-      $userText.val($userText.val() + $active.text())
+      $userText.val($userText.val() + $active.text() + ' ');
+      triggerSpace();
     }
   });
 
 
+  $('#predictions').on('click', 'a', function (event) {
+    event.preventDefault();
+    var $userText = $('#user-text');
+    $userText.val($userText.val() + $(this).text() + ' ');
+    triggerSpace();
+  });
+
+
+  function triggerSpace() {
+    e = $.Event('keydown');
+    e.which = 32;
+    $('#user-text').trigger(e);
+  }
   function renderWords(wordsArray) {
     var $predictionField = $('#predictions');
     $predictionField.empty();
     $predictionField.removeClass('hide');
     for(var i = 0; i < wordsArray.length; i++){
-      $predictionField.append("<a href='' class='collection-item'>" + wordsArray[i] + "</a>")
+      $predictionField.append("<a class='collection-item'>" + wordsArray[i] + "</a>")
     }
   }
-
 
 });
