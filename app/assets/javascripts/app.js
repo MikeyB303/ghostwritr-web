@@ -1,15 +1,14 @@
 $(document).on('turbolinks:load', function () {
-  $(".button-collapse").sideNav();
-  $('select').material_select();
   var apiDestination;
+   var $postForm =  $('#post-form');
 
   $('#libraries').change(function () {
-    $('#predicted_text').empty();
+    $('#predictions').empty();
     apiDestination = $(this).find(':selected').data('author');
     $('#user-text').prop('disabled', false);
   });
 
-  $('#post-form').on('keydown', '#user-text', function (event) {
+  $postForm.on('keydown', '#user-text', function (event) {
     if(event.which === 32){
       var userText = $(this).serialize();
       var response = $.ajax({
@@ -18,18 +17,28 @@ $(document).on('turbolinks:load', function () {
       });
 
       response.done(function (predictions) {
-        console.log(predictions);
         renderWords(predictions);
       });
     }
   });
 
+  $postForm.on('keydown', '#user-text', function (event) {
+    var $predictions = $('#predictions');
+    var $active;
+    if(event.which === 40){
+      if($predictions.find('a').hasClass('active')){
+        $active = $('#predictions .active');
+      }
+    }
+  });
+
 
   function renderWords(wordsArray) {
-    var $predictionField = $('#predicted_text');
+    var $predictionField = $('#predictions');
     $predictionField.empty();
+    $predictionField.removeClass('hide');
     for(var i = 0; i < wordsArray.length; i++){
-      $predictionField.append('<li>' + wordsArray[i] + '</li>')
+      $predictionField.append("<a href='' class='collection-item'>" + wordsArray[i] + "</a>")
     }
   }
 
