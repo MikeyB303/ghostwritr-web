@@ -7,21 +7,8 @@
     </ul>
 <% end %>
 
-<div id="libraries">
-  <button class='inspirational_author' data-author='/shakespeare'>Shakespeare</button><br>
-  <button class='inspirational_author' data-author='/rowling'>J-K Rowling</button><br>
-  <button class='inspirational_author' data-author='/got'>George RR Martin</button>
-</div>
+<%= render partial: 'libraries' %>
 
-<div id="predictions">
-  <ul id='predicted_text'></ul>
-</div>
-<%= form_for :posts, url: post_path, method: 'PUT', html: {id: 'post-form'} do |f| %>
-  <%= f.label :title %>:
-  <%= f.text_field :title, value: @post.try(:title) %><br />
-
-  <%= f.label :text %>:
-  <%= f.text_area :text, value: @post.try(:text), disabled: true, id: 'user-text' %><br />
-
-  <%= f.submit %>
+<%= form_for :posts, url: post_path, method: 'PUT', html: {id: 'post-form'}, class: 'col s12' do |f| %>
+  <%= render partial: 'post_form', locals: {post: @post, f: f} %>
 <% end %>
