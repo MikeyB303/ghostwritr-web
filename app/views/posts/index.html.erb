@@ -4,17 +4,15 @@
       <img src="https://www.biography.com/.image/t_share/MTE1ODA0OTcxNzgzMzkwNzMz/william-shakespeare-194895-1-402.jpg" alt="" class="circle">
       <span class="title"><%= link_to post.title, post_path(post)%></span>
       <p>Author:
-        <%= post.author.username %>
+        <%= link_to "#{post.author.username}", user_path(post.author.id) %>
       </p>
       <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
     </li>
   <% end %>
 </ul>
 
-<% if logged_in? %>
-    <%= link_to new_post_path, class: 'btn-floating btn-large waves-effect waves-light red right pulse' do %>
-        <i class="material-icons">add</i>
-    <% end %>
+<%= link_to new_post_path, class: 'btn-floating btn-large waves-effect waves-light red right pulse' do %>
+    <i class="material-icons">add</i>
 <% end %>
 
 
