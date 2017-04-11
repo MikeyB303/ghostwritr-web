@@ -1,6 +1,6 @@
 $(document).on('turbolinks:load', function () {
   var apiDestination;
-   var $postForm =  $('#post-form');
+  var $postForm = $('#post-form');
 
   $('#libraries').change(function () {
     $('#predictions').empty().addClass('hide');

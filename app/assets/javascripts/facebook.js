@@ -1,4 +1,4 @@
-$(document).on('turbolinks:load', function () {
+$(document).on('ready', function () {
 
   window.fbAsyncInit = function() {
   FB.init({
@@ -25,4 +25,5 @@ $(document).on('turbolinks:load', function () {
     href: window.location.href,
     quote: postText,
   }, function(response){});
-}})
+}
+});

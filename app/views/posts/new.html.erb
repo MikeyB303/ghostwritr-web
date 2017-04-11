@@ -48,9 +48,9 @@
 
       <div class="row">
         <% if logged_in? %>
-          <%= f.submit %>
+            <%= f.submit :submit, class: "btn waves-effect waves-light"%>
         <% else %>
-          <p><%= link_to "Login", new_session_path %> to save your post!</p>
+            <p><%= link_to "Login", new_session_path %> to save your post!</p>
         <% end %>
       </div>
   <% end %>

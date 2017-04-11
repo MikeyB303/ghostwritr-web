@@ -1,9 +1,4 @@
 $(document).on('turbolinks:load', function () {
-
+  $('#libraries').material_select();
   $(".button-collapse").sideNav();
-  $('select').material_select();
-  // $('#user-text').val('New Text');
-  // $('#user-text').trigger('autoresize');
-
-
 });
