@@ -1,4 +1,4 @@
-$(document).on('turbolinks:load', function(){
+$(document).on('ready', function(){
 
 	  $('#tweet-container').click(function(event) {
     		event.preventDefault();
