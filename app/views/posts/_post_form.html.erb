@@ -5,7 +5,8 @@
 
 <div class="section">
   <div class="input-field col s12 tooltipped"
-       data-position="top" data-delay="10" data-tooltip="Type space to get predictions, up/down arrow to pick predictions and tab to select">
+       data-position="top" data-delay="10" html="true"
+       data-tooltip="Use &#x25B2 &#x25BC to select a prediction and &#x21B9 to insert it in the text field">
     <%= f.text_area :text, disabled: true, id: 'user-text', class: 'materialize-textarea',
                     autocomplete: 'off', value: post.try(:text) %>
     <%= f.label :text %>

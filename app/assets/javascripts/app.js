@@ -11,6 +11,7 @@ $(document).on('turbolinks:load', function () {
   $postForm.on('keydown', '#user-text', function (event) {
     var $predictions = $('#predictions');
     var $active;
+    $('.tooltipped').tooltip('remove');
 
     if(event.which === 32){
       var userText = $(this).serialize();
