@@ -1,16 +1,16 @@
 <div class="row">
   <% if @user != current_user %>
-      <h3><%= @user.username %>'s page</h3>
+      <h3 class="flow-text"><%= @user.username %>'s page</h3>
 
-      <h4>Posts published by <%= @user.username %></h4>
+      <h3 class="flow-text">Posts published by <%= @user.username %></h3>
       <%= render partial: 'post_link_list', locals: {user: @user, published: true} %>
 
 
   <% else %>
-      <h3>Your published posts</h3>
+      <h3 class="flow-text">Your published posts</h3>
       <%= render partial: 'post_link_list', locals: {user: @user, published: true} %>
 
-      <h4>Your unpublished posts</h4>
+      <h3 class="flow-text">Your unpublished posts</h3>
       <%= render partial: 'post_link_list', locals: {user: @user, published: false} %>
   <% end %>
 </div>
