@@ -1,20 +1,28 @@
+  <div class="row">
 <ul class="collection">
   <% @posts.each do |post|%>
     <li class="collection-item avatar">
-      <img src="https://www.biography.com/.image/t_share/MTE1ODA0OTcxNzgzMzkwNzMz/william-shakespeare-194895-1-402.jpg" alt="" class="circle">
-      <span class="title flow-text"><%= link_to post.title, post_path(post)%></span>
-      <p>Author:
+      <div class="col s10 m8 l8 pull-l1 pull-m1 pull-s3">
+      <span class="flow-text">
+        <h6 class="flow-text"><%= link_to post.title, post_path(post)%></h6>
+      </span>
+      <p style="max-font-size: 60%">Author:
         <%= link_to "#{post.author.username}", user_path(post.author.id) %>
       </p>
-       <span class="secondary-content"><%= post.votes.count %> likes</span>
-            <% if logged_in? && voted?(post) %>
-              <%= link_to post_votes_path(post), method: 'CREATE', class: 'secondary-content' do %>
-                  <i class="material-icons">thumb_up</i>
-              <% end %>
+      </div>
+      <div class="col s2 m3 l3 push-l3 push-m3">
+        <% if logged_in? && voted?(post) %>
+          <%= link_to post_votes_path(post), method: 'CREATE', class: '' do %>
+              <i class="material-icons">thumb_up</i>
           <% end %>
+        <% end %>
+
+        <p class="flow-text"><%= post.votes.count %> likes</p>
+      </div>
     </li>
   <% end %>
 </ul>
+  </div>
 
 <%= link_to new_post_path, class: 'btn-floating btn-large waves-effect waves-light red right pulse' do %>
     <i class="material-icons">add</i>
