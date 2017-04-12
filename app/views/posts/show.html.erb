@@ -5,7 +5,7 @@
       <div class="card-stacked">
         <div class="card-content">
           <p>Written by: <%= link_to "#{@post.author.username}", user_path(@post.author.id) %></p>
-          <p id='post-text'><%= @post.text %></p>
+          <p class="flow-text" id='post-text'><%= @post.text %></p>
           <% if logged_in? && voted?(@post) %>
               <%= link_to post_votes_path(@post), method: 'CREATE', class: 'secondary-content' do %>
                   <i class="material-icons">grade</i>
@@ -50,7 +50,7 @@
                 <span class="secondary-content"><%= comment.votes.count %> votes</span>
               <div>
                 <h5><%= comment.commenter.username %></h5>
-                <%= comment.body %>
+                <p class="flow-text"><%= comment.body %></p>
               </div>
 
               <div class="right-align">
