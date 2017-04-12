@@ -31,5 +31,4 @@ describe SessionsController do
       expect(session[:user_id]).to be nil
     end
   end
-
 end
