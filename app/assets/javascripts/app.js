@@ -8,7 +8,7 @@ $(document).on('turbolinks:load', function () {
     $('#user-text').prop('disabled', false);
   });
 
-  $postForm.bind('input keyup', '#user-text', function (event) {
+  $postForm.on('keyup', '#user-text', function (event) {
     var $predictions = $('#predictions');
     var $active;
 
@@ -58,7 +58,7 @@ $(document).on('turbolinks:load', function () {
     var $predictions = $('#predictions');
     var $active;
     if (event.which === 9) {
-    event.preventDefault();
+      event.preventDefault();
       var $userText = $('#user-text');
       $active = $predictions.find('.active');
       $userText.val($userText.val() + $active.text() + ' ');
@@ -66,7 +66,7 @@ $(document).on('turbolinks:load', function () {
     }
   });
 
-  $('#predictions').on('click', 'a', function (event) {
+  $('#predictions').on('click touchend', 'a', function (event) {
     event.preventDefault();
     var $userText = $('#user-text');
     $userText.val($userText.val() + $(this).text() + ' ');
