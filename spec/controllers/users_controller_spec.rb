@@ -54,7 +54,7 @@ describe UsersController do
     it 'errors of user creation is invalid' do
       bad_user = User.new
       bad_user.save
-      expect(bad_user.errors.full_messages).to include("Text can't be blank")
+      expect(bad_user.errors.full_messages).to include("Password can't be blank", "Username can't be blank", "Email can't be blank")
     end
 
   end
