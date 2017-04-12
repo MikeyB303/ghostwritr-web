@@ -27,14 +27,5 @@ $(document).on('turbolinks:load', function(){
       	}, function(response){});
 
       })
-      // document.getElementById('shareBtn').onclick = function() {
-      //   postText = $('#post-text').text();
-      //   FB.ui({
-      //     method: 'share',
-      //     display: 'popup',
-      //     href: window.location.href,
-      //     quote: postText,
-      //   }, function(response){});
-      // };
 
 });
