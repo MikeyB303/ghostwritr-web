@@ -51,5 +51,11 @@ describe UsersController do
       expect(assigns(:user).posts.reject {|post| post.published?}).to include(unpublished_post)
     end
 
+    it 'errors of user creation is invalid' do
+      bad_user = User.new
+      bad_user.save
+      expect(bad_user.errors.full_messages).to include("Text can't be blank")
+    end
+
   end
 end
