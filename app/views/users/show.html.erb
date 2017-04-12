@@ -16,8 +16,13 @@
         </div>
       <% end %>                    
       <h4>Your unpublished posts</h4>
-      
-      <%= render partial: 'post_link_list', locals: {user: @user, published: false} %>
+      <% if return_true_if_user_has_published_post(@user) %>
+        <%= render partial: 'post_link_list', locals: {user: @user, published: false} %>
+      <% else %>
+         <div class="collection">
+          <%= @user.username %> make your first post <%= link_to "Try it out here!", new_post_path %> 
+        </div>
+      <% end %>
   <% end %>
 </div>
 <div class="row">
