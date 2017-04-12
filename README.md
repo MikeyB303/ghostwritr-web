@@ -1,5 +1,6 @@
 # Welcome to Ghostwriter
 ---
+
 ## The Team
 - Ken Saganski: [saganawski](https://github.com/saganawski)
 - Armando Dollia: [armandodollia](https://github.com/armandodollia)
@@ -16,19 +17,26 @@ For example: if the user is using the George R.R. Martin library amd types "You 
 To run this web app on your own, it is required that you have [rails](https://github.com/rails/rails) and [bundler](https://github.com/bundler/bundler) installed. 
 
 To install them, run the following commands in your terminal:
+
 `$ gem install rails`
-`@ gem install bundler`
+
+`$ gem install bundler`
+
 ## Getting Started
 1. Clone this repository to your local computer
+    
     `$ git clone https://github.com/MikeyB303/ghostwritr-web.git`
 
 2. Navigate to the newly cloned repo.
+    
     `$ cd wherever-you-cloned-the-repo-to/ghostwritr-web`
 
 3. Install dependencies using bundler.
+    
     `$ bundle install`
 
 4. Start a local rails server.
+    
     `$ rails server` or `$ rails s`
 
 5. In your web browser, navigate to [localhost:3000](localhost:3000) to view the app.
@@ -39,6 +47,7 @@ To install them, run the following commands in your terminal:
 
 ## Contributing
 If you'd like to contribute to Ghoswriter, simply fork this repo, make your desired changes, and create a pull request for us to review. If all is good, we'll accept your changes!
+
 ## Code Status
 ![code-status](https://circleci.com/gh/MikeyB303/ghostwritr-web.svg?style=shield&circle-token=:circle-token)
 
