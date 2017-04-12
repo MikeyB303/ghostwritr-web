@@ -2,21 +2,21 @@
   <ul class="collection">
     <% @posts.each do |post|%>
       <li class="collection-item avatar">
-        <div class="col s10 m8 l8 pull-l1 pull-m1 pull-s3">
-          <span class="flow-text">
-            <h6 class="flow-text"><%= link_to post.title, post_path(post)%></h6>
+        <div class="col s9 m9 l9 pull-l1 pull-m1 pull-s3">
+          <span>
+            <h6 class="flow-text" style="max-font-size: 200%"><%= link_to post.title, post_path(post)%></h6>
           </span>
-          <p style="max-font-size: 60%">Author:
+          <p style="font-size: 90%;" class="flow-text">Author:
             <%= link_to "#{post.author.username}", user_path(post.author.id) %>
           </p>
         </div>
-        <div class="col s2 m3 l3 push-l3 push-m3">
+        <div class="col s3 m3 l3 push-l2 push-m2">
           <% if logged_in? && voted?(post) %>
             <%= link_to post_votes_path(post), method: 'CREATE', class: '' do %>
               <i class="material-icons">thumb_up</i>
             <% end %>
           <% end %>
-          <p class="flow-text"><%= post.votes.count %> likes</p>
+          <p class="flow-text" style="font-size: 100%"><%= post.votes.count %> likes</p>
         </div>
       </li>
     <% end %>
