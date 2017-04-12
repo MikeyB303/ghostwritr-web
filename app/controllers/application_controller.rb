@@ -29,7 +29,7 @@ class ApplicationController < ActionController::Base
   end
 
   def get_predictions(words, author)
-    user_input = words.gsub(/[,.;:'"]/, '').split
+    user_input = words.gsub(/[,.;:'"]/, '').downcase.split
     
   
     if user_input.length >= 3

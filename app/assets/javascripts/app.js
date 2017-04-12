@@ -52,15 +52,19 @@ $(document).on('turbolinks:load', function () {
       }
     }
 
-    else if(event.which === 9){
-      event.preventDefault();
+  });
+
+  $postForm.on('keydown', '#user-text', function (event) {
+    var $predictions = $('#predictions');
+    var $active;
+    if (event.which === 9 || event.which === 13) {
+    event.preventDefault();
       var $userText = $('#user-text');
       $active = $predictions.find('.active');
       $userText.val($userText.val() + $active.text() + ' ');
       triggerSpace();
     }
   });
-
 
   $('#predictions').on('click', 'a', function (event) {
     event.preventDefault();
@@ -71,7 +75,7 @@ $(document).on('turbolinks:load', function () {
 
 
   function triggerSpace() {
-    e = $.Event('keydown');
+    e = $.Event('keyup');
     e.which = 32;
     $('#user-text').trigger(e);
   }
