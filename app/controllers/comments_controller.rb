@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
 	def new
+		redirect_to root_path if !logged_in?
 		@post = Post.find(params[:post_id])
 	end
 
