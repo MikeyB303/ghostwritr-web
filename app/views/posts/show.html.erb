@@ -4,9 +4,10 @@
     <div class="card horizontal">
       <div class="card-stacked">
         <div class="card-content">
+          <span class="secondary-content"><%= @post.votes.count %> likes</span>
           <p>Written by: <%= link_to "#{@post.author.username}", user_path(@post.author.id) %></p>
           <p id='post-text'><%= @post.text %></p>
-          <% if logged_in? && voted?(@post) %>
+          <% if logged_in? && voted?(@post)%>
               <%= link_to post_votes_path(@post), method: 'CREATE', class: 'secondary-content' do %>
                   <i class="material-icons">thumb_up</i>
               <% end %>
@@ -47,7 +48,7 @@
             <li class="collection-header"><h4>Comments</h4></li>
           <% @post.comments.each do |comment| %>
             <li class="collection-item">
-                <span class="secondary-content"><%= comment.votes.count %> votes</span>
+                <span class="secondary-content"><%= comment.votes.count %> likes</span>
               <div>
                 <h5><%= comment.commenter.username %></h5>
                 <%= comment.body %>

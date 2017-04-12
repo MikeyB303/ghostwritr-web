@@ -6,12 +6,12 @@
       <p>Author:
         <%= link_to "#{post.author.username}", user_path(post.author.id) %>
       </p>
-       <% if logged_in? && voted?(post) %>
-        <p><%= link_to "upvote", post_votes_path(post), method: 'CREATE' %></p>
-       <% end %>
-       <p><%= post.votes.count %></p>
-
-      
+       <span class="secondary-content"><%= post.votes.count %> likes</span>
+            <% if logged_in? && voted?(post) %>
+              <%= link_to post_votes_path(post), method: 'CREATE', class: 'secondary-content' do %>
+                  <i class="material-icons">thumb_up</i>
+              <% end %>
+          <% end %>
     </li>
   <% end %>
 </ul>
