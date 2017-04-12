@@ -1,25 +1,16 @@
-<% if @user != current_user %>
-  <h1><%= @user.username %>'s page</h1>
+<div class="row">
+  <% if @user != current_user %>
+      <h3><%= @user.username %>'s page</h3>
 
-  <h2>Posts published by <%= @user.username %></h2>
-  <ul id="user-published-posts-list">
-    <% @user_published_posts.each do |post| %>
-      <li class="user-published-post"><%= link_to "#{post.title}", post_path(post) %>.</li>
-    <% end %>
-  </ul>
-<% else %>
-  <h2>Your published posts</h2>
-  <ul id="user-published-posts-list">
-    <% @user_published_posts.each do |post| %>
-      <li class="user-published-post"><%= link_to "#{post.title}", post_path(post) %>.</li>
-    <% end %>
-  </ul>
+      <h4>Posts published by <%= @user.username %></h4>
+      <%= render partial: 'post_link_list', locals: {user: @user, published: true} %>
 
-  <h2>Your unpublished posts</h2>
-  <ul id="user-unpublished-posts-list">
-    <% @user_unpublished_posts.each do |post| %>
-      <li class="user-unpublished-post"><%= link_to "#{post.title}", post_path(post) %>.</li>
-    <% end %>
-  </ul>
-<% end %>
 
+  <% else %>
+      <h3>Your published posts</h3>
+      <%= render partial: 'post_link_list', locals: {user: @user, published: true} %>
+
+      <h4>Your unpublished posts</h4>
+      <%= render partial: 'post_link_list', locals: {user: @user, published: false} %>
+  <% end %>
+</div>

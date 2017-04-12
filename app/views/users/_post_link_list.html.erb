@@ -1,0 +1,6 @@
+<div class="collection" id="user-published-posts-list">
+  <% published_posts(user, published).each do |post| %>
+      <%= link_to "#{post.title}", post_path(post), class: 'collection-item' %>
+  <% end %>
+</div>
+
