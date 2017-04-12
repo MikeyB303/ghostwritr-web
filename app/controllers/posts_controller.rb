@@ -16,6 +16,8 @@ class PostsController < ApplicationController
   end
 
   def create
+    redirect_to root_path if !logged_in?
+
     new_post = Post.new(post_params)
     new_post.author_id = current_user.id
     if new_post.save
@@ -28,10 +30,12 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find_by(id: params[:id])
+    redirect_to root_path if !authorized?(@post.author_id)
   end
 
   def update
     post = Post.find_by(id: params[:id])
+    redirect_to root_path if !authorized?(post.author_id)
     post.assign_attributes(post_params)
     if post.save
       redirect_to post_path(post)
@@ -43,8 +47,9 @@ class PostsController < ApplicationController
 
   def destroy
     post = Post.find_by(id: params[:id])
+    redirect_to root_path if !authorized?(post.author_id)
     post.destroy
-    redirect_to '/'
+    redirect_to root_path
   end
 
   private
