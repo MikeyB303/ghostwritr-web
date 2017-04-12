@@ -5,7 +5,8 @@
 
 <div class="section">
   <div class="input-field col s12">
-    <%= f.text_area :text, disabled: true, id: 'user-text', class: 'materialize-textarea', value: post.try(:text) %>
+    <%= f.text_area :text, disabled: true, id: 'user-text', class: 'materialize-textarea',
+                    autocomplete: 'off', value: post.try(:text) %>
     <%= f.label :text %>
   </div>
 </div>

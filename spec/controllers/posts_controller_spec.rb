@@ -5,6 +5,7 @@ describe PostsController do
   let!(:published_post) {Post.create!(author_id: user.id, title: "Harry Potter 20", text: "Wacky Wizards", published?: true)}
   let!(:unpublished_post) {Post.create!(author_id: user.id, title: "Harry Potter 20", text: "Wacky Wizards", published?: false)}  
   let!(:posts) {Post.all}
+  let!(:invalid_post) {Post.create(author_id: user.id, title: "Bad Post 10")}
   
   describe 'GET posts#index' do
     it 'renders posts#index' do
@@ -36,6 +37,13 @@ describe PostsController do
       post :create, {params: {posts: {title: "Harry Potter 20"}}}
       expect(response).to render_template(:new)
     end
+
+    it 'errors if post was invalid' do
+      bad_post = Post.new
+      bad_post.save
+      expect(bad_post.errors.full_messages).to include("Author must exist", "Title can't be blank", "Text can't be blank", "Author can't be blank")   
+    end
+
   end
 
   describe "Edit a post" do
@@ -58,6 +66,11 @@ describe PostsController do
       put :update, params: {:id => published_post.id, :posts => {author_id: user.id, title: ""}}
       expect(response).to render_template 'edit'
     end
+
+    it 'errors if post was invalid' do
+      invalid_post.save
+      expect(invalid_post.errors.full_messages).to include("Text can't be blank")   
+    end    
   end
 
   describe "destroy a post" do
