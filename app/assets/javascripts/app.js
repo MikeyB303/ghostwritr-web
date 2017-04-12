@@ -8,7 +8,7 @@ $(document).on('turbolinks:load', function () {
     $('#user-text').prop('disabled', false);
   });
 
-  $postForm.delegate('#user-text', 'input keyup', function (event) {
+  $postForm.bind('input keyup', '#user-text', function (event) {
     var $predictions = $('#predictions');
     var $active;
 
