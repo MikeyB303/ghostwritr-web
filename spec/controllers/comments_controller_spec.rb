@@ -4,8 +4,10 @@ describe CommentsController do
 	let!(:user) {User.create!(username: "mikey", email: "test@email.com", password: "password")}
 	let!(:published_post) {Post.create!(author_id: user.id, title: "Harry Potter 20", text: "Wacky Wizards", published?: true)}
 	let!(:comment) {Comment.create!(post_id: published_post.id, commenter_id: user.id, body:"main body")}
+	
 	describe "Get comments#new" do
 		it "renders a new template" do
+			session[:user_id] = user.id
 			get :new, params: {:post_id => published_post.id}
 			expect(response).to render_template(:new)
 		end
@@ -32,6 +34,7 @@ describe CommentsController do
 	
 	describe "Destroys a comment" do
 		it "redirects to post#show" do
+			session[:user_id] = user.id
 			delete :destroy, params: {:post_id => published_post.id, :id => comment.id}
 			expect(response).to redirect_to "/posts/#{published_post.id}" 
 		end
