@@ -14,3 +14,11 @@
       <%= render partial: 'post_link_list', locals: {user: @user, published: false} %>
   <% end %>
 </div>
+<div class="row">
+  <div class="collection">
+    <h4><%= @user.username %>'s liked post's</h4>
+      <% @user.votes.each do |vote| %>
+        <%= vote.votable.title %> <br>   
+      <% end %>
+  </div>
+</div>
