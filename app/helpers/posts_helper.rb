@@ -9,4 +9,8 @@ module PostsHelper
   	end
   	return false
   end
+
+  def return_users_liked_post(user)
+  	user.votes.where(votable_type: Post)
+  end
 end

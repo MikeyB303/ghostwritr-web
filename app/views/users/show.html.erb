@@ -29,7 +29,7 @@
   <div class="collection">
     <h4><%= @user.username %>'s liked post's</h4>
     
-      <% @user.votes.where(votable_type: Post).each do |vote| %>
+      <% return_users_liked_post(@user).each do |vote| %>
           <%= link_to vote.votable.title, post_path(vote.votable) %> <br>   
       <% end %>
   </div>
