@@ -4,11 +4,12 @@
     <div class="card horizontal">
       <div class="card-stacked">
         <div class="card-content">
+          <span class="secondary-content"><%= @post.votes.count %> likes</span>
           <p>Written by: <%= link_to "#{@post.author.username}", user_path(@post.author.id) %></p>
           <p class="flow-text" id='post-text'><%= @post.text %></p>
           <% if logged_in? && voted?(@post) %>
               <%= link_to post_votes_path(@post), method: 'CREATE', class: 'secondary-content' do %>
-                  <i class="material-icons">grade</i>
+                  <i class="material-icons">thumb_up</i>
               <% end %>
           <% end %>
         </div>
@@ -48,6 +49,7 @@
             <h4 class="flow-text">Comments</h4>
           </li>
           <% @post.comments.each do |comment| %>
+<<<<<<< HEAD
               <li class="collection-item">
                 <span class="secondary-content"><%= comment.votes.count %> votes</span>
                 <div>
@@ -57,6 +59,17 @@
 
                 <div class="right-align">
                   <% if authorized?(comment.commenter_id) %>
+=======
+            <li class="collection-item">
+                <span class="secondary-content"><%= comment.votes.count %> likes</span>
+              <div>
+                <h5><%= comment.commenter.username %></h5>
+                <%= comment.body %>
+              </div>
+
+              <div class="left-align">
+                <% if authorized?(comment.commenter_id) %>
+>>>>>>> master
                     <%= link_to post_comment_path(@post,comment), method: 'DELETE', class: "btn-floating btn-small waves-effect waves-light red" do %>
                         <i class="material-icons">delete</i>
                     <% end %>
