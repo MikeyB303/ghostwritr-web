@@ -1,11 +1,5 @@
-<h1>Add your comment!</h1>
-<% if @errors %>
-    <ul>
-      <% @errors.each do |error| %>
-          <li><%= error %></li>
-      <% end %>
-    </ul>
-<% end %>
+<h4>Add your comment!</h4>
+<%= render partial: './errors', locals: {errors: @errors} %>
 
 <div class="row">
   <%= form_for :comments, url: post_comments_path(@post), class: 'col s12' do |f| %>

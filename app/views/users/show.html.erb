@@ -1,27 +1,16 @@
+<div class="row">
+  <% if @user != current_user %>
+      <h3><%= @user.username %>'s page</h3>
 
-<% if @user != current_user %>
-  <ul id="user-published-posts-list" class="collection with-header">
-  <h1 class="collection-header"><%= @user.username %>'s page</h1>
-  </ul>
+      <h4>Posts published by <%= @user.username %></h4>
+      <%= render partial: 'post_link_list', locals: {user: @user, published: true} %>
 
-  <ul id="user-published-posts-list" class="collection with-header">
-    <h2 class="collection-header">Posts published by <%= @user.username %></h2>
-    <% @user_published_posts.each do |post| %>
-      <li class="user-published-post collection-item"><%= link_to "#{post.title}", post_path(post) %>.</li>
-    <% end %>
-  </ul>
-<% else %>
-  <ul id="user-published-posts-list" class="collection with-header">
-    <h2 class="collection-header">Your published posts</h2>
-    <% @user_published_posts.each do |post| %>
-      <li class="user-published-post collection-item"><%= link_to "#{post.title}", post_path(post) %>.</li>
-    <% end %>
-  </ul>
 
-  <ul id="user-unpublished-posts-list" class="collection with-header">
-  <h2 class="collection-header">Your unpublished posts</h2>
-    <% @user_unpublished_posts.each do |post| %>
-      <li class="user-unpublished-post collection-item"><%= link_to "#{post.title}", post_path(post) %>.</li>
-    <% end %>
-  </ul>
-<% end %>
+  <% else %>
+      <h3>Your published posts</h3>
+      <%= render partial: 'post_link_list', locals: {user: @user, published: true} %>
+
+      <h4>Your unpublished posts</h4>
+      <%= render partial: 'post_link_list', locals: {user: @user, published: false} %>
+  <% end %>
+</div>

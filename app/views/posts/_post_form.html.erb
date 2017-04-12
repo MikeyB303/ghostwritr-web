@@ -1,23 +1,31 @@
-<div class="row">
-  <div class="input-field col s12">
-    <%= f.text_field :title, value: post.try(:title) %>
-    <%= f.label :title %>
-  </div>
-</div>
+<!--<div class="section">-->
+  <!--<div class="col s12 m6 l3">-->
+    <div class="input-field col s12 m6 l9">
+      <%= f.text_field :title, value: post.try(:title) %>
+      <%= f.label :title %>
+    </div>
+  <!--</div>-->
+<!--</div>-->
 
-<div class="row">
+<div class="section">
   <div class="input-field col s12">
     <%= f.text_area :text, disabled: true, id: 'user-text', class: 'materialize-textarea', value: post.try(:text) %>
     <%= f.label :text %>
   </div>
 </div>
 
-<%= render partial: 'predictions' %>
+<div class="section">
+  <div class="col s12">
+  <%= render partial: 'predictions' %>
+  </div>
+</div>
 
-<div class="row">
-  <% if logged_in? %>
-  <%= f.submit :submit, class: "btn waves-effect waves-light"%>
-  <% else %>
-  <p><%= link_to "Login", new_session_path %> to save your post!</p>
-  <% end %>
+<div class="section">
+  <div class="col s3">
+    <% if logged_in? %>
+    <%= f.submit :submit, class: "btn waves-effect waves-light"%>
+    <% else %>
+    <p><%= link_to "Login", new_session_path %> to save your post!</p>
+    <% end %>
+  </div>
 </div>
