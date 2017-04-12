@@ -35,11 +35,10 @@
       Share on Twitter
     </div>
 
-    <div id="shareBtn" class="btn btn-success waves-effect waves-light clearfix">
-      Share on Facebook
-    </div>
+    <div id="shareBtn" class="btn btn-success clearfix">Share on Facebook</div>
   </div>
 </div>
+
 
 <div class="row">
     <div class="col s12">
@@ -61,7 +60,7 @@
                     <% end %>
                 <% end %>
 
-                <% if voted?(comment)%>
+                <% if voted?(comment) && logged_in? %>
                     <%= link_to comment_votes_path(comment), method: 'CREATE', class: "btn-floating btn-small waves-effect waves-light red" do %>
                         <i class="material-icons">thumb_up</i>
                     <% end %>
