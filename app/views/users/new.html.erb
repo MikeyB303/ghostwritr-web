@@ -1,23 +1,26 @@
-<h1>Sign up</h1>
-<% if @errors %>
-    <ul>
-      <% @errors.each do |error| %>
-          <li><%= error %></li>
-      <% end %>
-    </ul>
-<% end %>
+<h3>Sign up</h3>
+<%= render partial: './errors', locals: {errors: @errors} %>
+
 <div class="row">
-	<%= form_for :users, url: '/users' do |f| %>
-	
-      <%= f.label :username %>
-      <%= f.text_field :username %>
+	<%= form_for :users, url: '/users', class: 'col s12' do |f| %>
 
-      <%= f.label :email %>
-      <%= f.email_field :email %>
+      <div class="input-field col s12">
+        <%= f.text_field :username, class: 'validate' %>
+        <%= f.label :username %>
+      </div>
 
-      <%= f.label :password %>
-      <%= f.password_field :password %>
+      <div class="input-field col s12">
+        <%= f.email_field :email, class: 'validate' %>
+        <%= f.label :email %>
+      </div>
 
-      <%= f.submit "Create my account" %>
+      <div class="input-field col s12">
+        <%= f.password_field :password, class: 'validate' %>
+        <%= f.label :password %>
+      </div>
+
+      <div class="input-field col s12">
+        <%= f.submit 'Create my account', class: 'btn waves-effect waves-light' %>
+      </div>
 	<% end %>
 </div>

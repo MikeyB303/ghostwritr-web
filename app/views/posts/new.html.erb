@@ -1,6 +1,6 @@
 <div class="row">
   <h1>Write a new post!</h1>
-  <%= render partial: 'errors', locals: {errors: @errors} %>
+  <%= render partial: './errors', locals: {errors: @errors} %>
   <%= render partial: 'libraries' %>
 
   <%= form_for :posts, url: posts_path, html: {id: 'post-form'}, class: 'col s12' do |f| %>
