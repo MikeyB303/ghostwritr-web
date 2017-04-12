@@ -1,25 +1,27 @@
-<% if @user != current_user %>
-  <h1><%= @user.username %>'s page</h1>
 
-  <h2>Posts published by <%= @user.username %></h2>
-  <ul id="user-published-posts-list">
+<% if @user != current_user %>
+  <ul id="user-published-posts-list" class="collection with-header">
+  <h1 class="collection-header"><%= @user.username %>'s page</h1>
+  </ul>
+
+  <ul id="user-published-posts-list" class="collection with-header">
+    <h2 class="collection-header">Posts published by <%= @user.username %></h2>
     <% @user_published_posts.each do |post| %>
-      <li class="user-published-post"><%= link_to "#{post.title}", post_path(post) %>.</li>
+      <li class="user-published-post collection-item"><%= link_to "#{post.title}", post_path(post) %>.</li>
     <% end %>
   </ul>
 <% else %>
-  <h2>Your published posts</h2>
-  <ul id="user-published-posts-list">
+  <ul id="user-published-posts-list" class="collection with-header">
+    <h2 class="collection-header">Your published posts</h2>
     <% @user_published_posts.each do |post| %>
-      <li class="user-published-post"><%= link_to "#{post.title}", post_path(post) %>.</li>
+      <li class="user-published-post collection-item"><%= link_to "#{post.title}", post_path(post) %>.</li>
     <% end %>
   </ul>
 
-  <h2>Your unpublished posts</h2>
-  <ul id="user-unpublished-posts-list">
+  <ul id="user-unpublished-posts-list" class="collection with-header">
+  <h2 class="collection-header">Your unpublished posts</h2>
     <% @user_unpublished_posts.each do |post| %>
-      <li class="user-unpublished-post"><%= link_to "#{post.title}", post_path(post) %>.</li>
+      <li class="user-unpublished-post collection-item"><%= link_to "#{post.title}", post_path(post) %>.</li>
     <% end %>
   </ul>
 <% end %>
-
