@@ -8,7 +8,7 @@ $(document).on('turbolinks:load', function () {
     $('#user-text').prop('disabled', false);
   });
 
-  $postForm.on('keydown', '#user-text', function (event) {
+  $postForm.on('keyup', '#user-text', function (event) {
     var $predictions = $('#predictions');
     var $active;
 
