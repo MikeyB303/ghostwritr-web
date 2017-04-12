@@ -5,6 +5,8 @@ class CommentsController < ApplicationController
 	end
 
 	def create
+		redirect_to root_path if !logged_in?
+
 		new_comment = Comment.new(comment_params)
 		new_comment.commenter_id = current_user.id 
 		new_comment.post_id = params[:post_id]
@@ -20,7 +22,9 @@ class CommentsController < ApplicationController
 	end
 
 	def destroy
-		Comment.find_by(id: params[:id]).destroy
+		comment = Comment.find_by(id: params[:id])
+		redirect_to root_path if !authorized?(comment.commenter_id)
+		comment.destroy
 		redirect_to post_path(params[:post_id])
 	end
 
