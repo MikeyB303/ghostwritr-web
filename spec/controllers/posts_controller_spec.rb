@@ -40,28 +40,31 @@ describe PostsController do
 
   describe "Edit a post" do
     it "renders a edit template" do
-      get :edit, {params: {id: 1}}
+      session[:user_id] = user.id
+      get :edit, {params: {id: published_post.id}}
       expect(response).to render_template(:edit)
     end
   end
 
   describe "Update a post" do
-    it 'redirects to post#show if vaild update' do
+    it 'redirects to post#show if valid update' do
+      session[:user_id] = user.id
       put :update, params: {:id => published_post.id, :posts => {author_id: user.id, title: "harry potter turns 21", text:"Wacky", published?: true}}
-    
       expect(response).to redirect_to(post_path)
     end
 
-    it 'renders posts#edit if invaild update' do
+    it 'renders posts#edit if invalid update' do
+      session[:user_id] = user.id
       put :update, params: {:id => published_post.id, :posts => {author_id: user.id, title: ""}}
-      expect(response).to render_template 'posts/edit'
+      expect(response).to render_template 'edit'
     end
   end
 
   describe "destroy a post" do
     it "redirects to / "do
+      session[:user_id] = user.id
       delete :destroy, {params: {id: published_post.id}}
-      expect(response).to redirect_to "/"
+      expect(response).to redirect_to root_path
     end
    end
 
