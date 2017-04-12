@@ -57,7 +57,7 @@ $(document).on('turbolinks:load', function () {
   $postForm.on('keydown', '#user-text', function (event) {
     var $predictions = $('#predictions');
     var $active;
-    if (event.which === 9 || event.which === 13) {
+    if (event.which === 9) {
     event.preventDefault();
       var $userText = $('#user-text');
       $active = $predictions.find('.active');
