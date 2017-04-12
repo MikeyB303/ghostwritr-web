@@ -44,31 +44,33 @@
     <div class="col s12">
       <% if @post.comments %>
         <ul class="collection with-header">
-            <li class="collection-header"><h4>Comments</h4></li>
+          <li class="collection-header">
+            <h4 class="flow-text">Comments</h4>
+          </li>
           <% @post.comments.each do |comment| %>
-            <li class="collection-item">
+              <li class="collection-item">
                 <span class="secondary-content"><%= comment.votes.count %> votes</span>
-              <div>
-                <h5><%= comment.commenter.username %></h5>
-                <p class="flow-text"><%= comment.body %></p>
-              </div>
+                <div>
+                  <h5><%= comment.commenter.username %></h5>
+                  <p class="flow-text"><%= comment.body %></p>
+                </div>
 
-              <div class="right-align">
-                <% if authorized?(comment.commenter_id) %>
+                <div class="right-align">
+                  <% if authorized?(comment.commenter_id) %>
                     <%= link_to post_comment_path(@post,comment), method: 'DELETE', class: "btn-floating btn-small waves-effect waves-light red" do %>
                         <i class="material-icons">delete</i>
                     <% end %>
-                <% end %>
+                  <% end %>
 
-                <% if voted?(comment) && logged_in? %>
+                  <% if voted?(comment) && logged_in? %>
                     <%= link_to comment_votes_path(comment), method: 'CREATE', class: "btn-floating btn-small waves-effect waves-light red" do %>
                         <i class="material-icons">thumb_up</i>
                     <% end %>
-                <% end %>
-              </div>
-
-            </li>
+                  <% end %>
+                </div>
+              </li>
           <% end %>
+          </li>
         </ul>
       <% end %>
     </div>
