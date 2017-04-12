@@ -50,7 +50,7 @@
               <% end %>
           <% end %>
 
-          <% if voted?(comment)%>
+          <% if voted?(comment) && logged_in? %>
               <%= link_to comment_votes_path(comment), method: 'CREATE', class: "btn-floating btn-small waves-effect waves-light red" do %>
                   <i class="material-icons">thumb_up</i>
               <% end %>
