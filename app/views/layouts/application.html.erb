@@ -38,23 +38,12 @@
       };
     </script>
 
-      <nav>
-        <div class="nav-wrapper">
-          <div class="navbar-fixed">
-            <a href="/" class="brand-logo center">GhostWriter</a>
-            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-            <ul id="nav-mobile" class="left hide-on-med-and-down">
-              <% if logged_in? %>
-                  <li><%= link_to "#{current_user.username}", user_path(current_user) %></li>
-                  <li><%= link_to 'logout', session_path(current_user), method: :delete %></li>
-              <% else %>
-                  <li><%= link_to 'Sign Up', new_user_path %></li>
-                  <li><%= link_to 'Log in', new_session_path %></li>
-              <% end %>
-              <li><%= link_to 'Home', "/" %></li>
-            </ul>
-          </div>
-          <ul class="side-nav" id="mobile-demo">
+    <div class="nav-wrapper">
+      <div class="navbar-fixed">
+        <nav>
+          <a href="/" class="brand-logo center">GhostWriter</a>
+          <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+          <ul id="nav-mobile" class="left hide-on-med-and-down">
             <% if logged_in? %>
                 <li><%= link_to "#{current_user.username}", user_path(current_user) %></li>
                 <li><%= link_to 'logout', session_path(current_user), method: :delete %></li>
@@ -64,8 +53,19 @@
             <% end %>
             <li><%= link_to 'Home', "/" %></li>
           </ul>
-        </div>
-      </nav>
+        </nav>
+      </div>
+    </div>
+    <ul class="side-nav" id="mobile-demo">
+      <% if logged_in? %>
+          <li><%= link_to "#{current_user.username}", user_path(current_user) %></li>
+          <li><%= link_to 'logout', session_path(current_user), method: :delete %></li>
+      <% else %>
+          <li><%= link_to 'Sign Up', new_user_path %></li>
+          <li><%= link_to 'Log in', new_session_path %></li>
+      <% end %>
+      <li><%= link_to 'Home', "/" %></li>
+    </ul>
     <div class="container">
       <%= yield %>
     </div>
