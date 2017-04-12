@@ -12,15 +12,21 @@ describe CommentsController do
 	end
 
 	describe "Creating a new comment " do
-		it "redirects to post path if vaild submit" do
+		it "redirects to post path if valid submit" do
 			session[:user_id] = user.id
 			post :create, params: {:post_id => published_post.id, :comments => {post_id: published_post.id, commenter_id: user.id, body: "test body"}}
 			expect(response).to redirect_to "/posts/#{published_post.id}"
 		end
-		it "renders comments/new if invailed" do
+		it "renders comments/new if invalid" do
 			session[:user_id] = user.id
 			post :create, params: {:post_id => published_post.id, :comments => {commenter_id: user.id}}
 			expect(response).to render_template "comments/new"
+		end
+
+		it 'assigns errors if invalid' do
+			session[:user_id] = user.id
+			post :create, params: {:post_id => published_post.id, :comments => {commenter_id: user.id}}
+			expect(assigns(:errors)).to eq(["Body can't be blank"])
 		end
 	end
 	
