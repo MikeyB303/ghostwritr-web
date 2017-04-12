@@ -1,19 +1,9 @@
 <div class="row">
   <h1>Write a new post!</h1>
-  <% if @errors %>
-      <ul>
-        <% @errors.each do |error| %>
-            <li><%= error %></li>
-        <% end %>
-      </ul>
-  <% end %>
-
-
+  <%= render partial: 'errors', locals: {errors: @errors} %>
   <%= render partial: 'libraries' %>
 
-  <!--<div class="section">-->
-    <%= form_for :posts, url: posts_path, html: {id: 'post-form'}, class: 'col s12' do |f| %>
-        <%= render partial: 'post_form', locals: {post: @post, f: f} %>
-    <!--<% end %>-->
-  </div>
+  <%= form_for :posts, url: posts_path, html: {id: 'post-form'}, class: 'col s12' do |f| %>
+      <%= render partial: 'post_form', locals: {post: @post, f: f} %>
+  <% end %>
 </div>

@@ -1,14 +1,9 @@
-<h1>Edit your post!</h1>
-<% if @errors %>
-    <ul>
-      <% @errors.each do |error| %>
-          <li><%= error %></li>
-      <% end %>
-    </ul>
-<% end %>
+<div class="row">
+  <h1>Edit your post!</h1>
+  <%= render partial: 'errors', locals: {errors: @errors} %>
+  <%= render partial: 'libraries' %>
 
-<%= render partial: 'libraries' %>
-
-<%= form_for :posts, url: post_path, method: 'PUT', html: {id: 'post-form'}, class: 'col s12' do |f| %>
-  <%= render partial: 'post_form', locals: {post: @post, f: f} %>
-<% end %>
+  <%= form_for :posts, url: post_path, method: 'PUT', html: {id: 'post-form'}, class: 'col s12' do |f| %>
+    <%= render partial: 'post_form', locals: {post: @post, f: f} %>
+  <% end %>
+</div>
