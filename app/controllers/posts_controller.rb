@@ -48,6 +48,8 @@ class PostsController < ApplicationController
   def destroy
     post = Post.find_by(id: params[:id])
     redirect_to root_path if !authorized?(post.author_id)
+    post.votes.destroy_all
+    post.comments.destroy_all
     post.destroy
     redirect_to root_path
   end
