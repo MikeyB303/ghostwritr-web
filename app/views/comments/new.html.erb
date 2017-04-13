@@ -1,17 +1,4 @@
 <h4>Add your comment!</h4>
 <%= render partial: './errors', locals: {errors: @errors} %>
 
-<div class="row">
-  <%= form_for :comments, url: post_comments_path(@post), class: 'col s12' do |f| %>
-      <div class="row">
-        <div class="input-field col s12">
-          <%= f.text_area :body, class: 'materialize-textarea' %>
-          <%= f.label :body %>
-        </div>
-      </div>
-
-      <div class="row">
-        <%= f.submit :submit, class: "btn waves-effect waves-light" %>
-      </div>
-  <% end %>
-</div>
+<%= render partial: 'new_comment_form', locals: {post: @post} %>
