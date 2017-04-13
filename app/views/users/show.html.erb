@@ -1,16 +1,33 @@
 <div class="row">
   <% if @user != current_user %>
       <h3 class="flow-text"><%= @user.username %>'s page</h3>
-
       <h3 class="flow-text">Posts published by <%= @user.username %></h3>
       <%= render partial: 'post_link_list', locals: {user: @user, published: true} %>
-
-
   <% else %>
       <h3 class="flow-text">Your published posts</h3>
-      <%= render partial: 'post_link_list', locals: {user: @user, published: true} %>
-
+      <% if return_true_if_user_has_published_post(@user) %>
+        <%= render partial: 'post_link_list', locals: {user: @user, published: true} %>
+      <% else %>
+        <div class="collection">
+          <%= @user.username %> make your first post <%= link_to "Try it out here!", new_post_path %> 
+        </div>
+      <% end %>                    
       <h3 class="flow-text">Your unpublished posts</h3>
-      <%= render partial: 'post_link_list', locals: {user: @user, published: false} %>
+      <% if return_true_if_user_has_published_post(@user) %>
+        <%= render partial: 'post_link_list', locals: {user: @user, published: false} %>
+      <% else %>
+         <div class="collection">
+          <%= @user.username %> make your first post <%= link_to "Try it out here!", new_post_path %> 
+        </div>
+      <% end %>
   <% end %>
+</div>
+<div class="row">
+  <div class="collection">
+    <h4><%= @user.username %>'s liked post's</h4>
+    
+      <% return_users_liked_post(@user).each do |vote| %>
+          <%= link_to vote.votable.title, post_path(vote.votable) %> <br>   
+      <% end %>
+  </div>
 </div>
