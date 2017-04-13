@@ -1,6 +1,9 @@
 <div class="collection" id="user-published-posts-list">
-  <% published_posts(user, published).each do |post| %>
-      <%= link_to "#{post.title}", post_path(post), class: 'collection-item' %>
+  <% if return_true_if_user_has_published_post(user) %>
+      <% published_posts(user, published).each do |post| %>
+          <%= link_to "#{post.title}", post_path(post), class: 'collection-item flow-text' %>
+      <% end %>
+  <% else %>
+      <p class="collection-item flow-text"><%= user.username %> make your first post <%= link_to 'Try it out here!', new_post_path %>></p>
   <% end %>
 </div>
-

@@ -1,20 +1,27 @@
-<ul class="collection">
-  <% @posts.each do |post|%>
-    <li class="collection-item avatar">
-      <img src="https://www.biography.com/.image/t_share/MTE1ODA0OTcxNzgzMzkwNzMz/william-shakespeare-194895-1-402.jpg" alt="" class="circle">
-      <span class="title"><%= link_to post.title, post_path(post)%></span>
-      <p>Author:
-        <%= link_to "#{post.author.username}", user_path(post.author.id) %>
-      </p>
-       <span class="secondary-content"><%= post.votes.count %> likes</span>
+  <ul class="collection">
+    <% @posts.each do |post|%>
+      <li class="collection-item">
+        <div class="row">
+          <div class="col s10 m10 l11">
+            <span>
+              <h6 class="flow-text" style="max-font-size: 200%"><%= link_to post.title, post_path(post)%></h6>
+            </span>
+            <p style="font-size: 90%;" class="flow-text">Author:
+              <%= link_to "#{post.author.username}", user_path(post.author.id) %>
+            </p>
+          </div>
+          <div class="col s2 m2 l1">
             <% if logged_in? && voted?(post) %>
-              <%= link_to post_votes_path(post), method: 'CREATE', class: 'secondary-content' do %>
-                  <i class="material-icons">thumb_up</i>
+              <%= link_to post_votes_path(post), method: 'CREATE', class: '' do %>
+                <i class="material-icons">thumb_up</i>
               <% end %>
-          <% end %>
-    </li>
-  <% end %>
-</ul>
+            <% end %>
+            <p class="flow-text" style="font-size: 100%"><%= post.votes.count %> likes</p>
+          </div>
+        </div>
+      </li>
+    <% end %>
+  </ul>
 
 <%= link_to new_post_path, class: 'btn-floating btn-large waves-effect waves-light red right pulse' do %>
     <i class="material-icons">add</i>
