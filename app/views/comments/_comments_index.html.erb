@@ -1,20 +1,20 @@
 <li class="collection-item">
-        <div class="row">
-          <span class="flow-text" style="font-size: 100%;"><%= link_to comment.commenter.username, user_path(comment.commenter) %></span>
-          <span class="secondary-content flow-text" style="font-size: 100%;"><%= comment.votes.count %> likes</span>
+  <div class="row">
+    <span class="flow-text" style="font-size: 100%;"><%= link_to comment.commenter.username, user_path(comment.commenter) %></span>
+    <span class="secondary-content flow-text" style="font-size: 100%;"><%= comment.votes.count %> likes</span>
 
-          <p class="flow-text" style="font-size: 120%"><%= comment.body %></p>
+    <p class="flow-text" style="font-size: 120%"><%= comment.body %></p>
 
-          <% if authorized?(comment.commenter_id) %>
-            <%= link_to post_comment_path(@post,comment), method: 'DELETE', class: "btn-floating btn-small waves-effect waves-light red" do %>
-              <i class="material-icons">delete</i>
-            <% end %>
-          <% end %>
+    <% if authorized?(comment.commenter_id) %>
+      <%= link_to post_comment_path(@post,comment), method: 'DELETE', class: "btn-floating btn-small waves-effect waves-light red" do %>
+      <i class="material-icons">delete</i>
+      <% end %>
+    <% end %>
 
-          <% if voted?(comment) && logged_in? %>
-            <%= link_to comment_votes_path(comment), method: 'CREATE', class: "btn-floating btn-small waves-effect waves-light red" do %>
-              <i class="material-icons">thumb_up</i>
-            <% end %>
-          <% end %>
-        </div>
-      </li>
+    <% if voted?(comment) && logged_in? %>
+      <%= link_to comment_votes_path(comment), method: 'CREATE', class: "btn-floating btn-small waves-effect waves-light red" do %>
+      <i class="material-icons">thumb_up</i>
+      <% end %>
+    <% end %>
+  </div>
+</li>
