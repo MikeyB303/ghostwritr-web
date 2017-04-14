@@ -78,20 +78,20 @@
         </a>
         <ul>
           <li>
-            <%= link_to edit_post_path(@post), class: 'waves-effect waves-light blue lighten-1 tooltipped' do %>
+            <%= link_to edit_post_path(@post), class: 'waves-effect waves-light blue lighten-1' do %>
               <i class="material-icons tooltipped" data-position="top" data-delay="10" data-tooltip="Edit Post">mode_edit</i>
             <% end %>
           </li>
 
           <li>
-            <%= link_to post_path(@post), method: "DELETE", class: 'waves-effect waves-light blue lighten-1 tooltipped' do %>
+            <%= link_to post_path(@post), method: "DELETE", class: 'waves-effect waves-light blue lighten-1' do %>
               <i class="material-icons tooltipped" data-position="top" data-delay="10" data-tooltip="Delete Post">delete</i>
             <% end %>
           </li>
 
           <% if !@post.published? && author?(@post) %>
               <li>
-                <%= link_to post_path(:id => @post.id, :posts => { :published? => true}), method: 'PUT', class: 'waves-effect waves-light blue lighten-1 tooltipped' do %>
+                <%= link_to post_path(:id => @post.id, :posts => { :published? => true}), method: 'PUT', class: 'waves-effect waves-light blue lighten-1' do %>
                     <i class="material-icons tooltipped" data-position="top" data-delay="10" data-tooltip="Publish Post">playlist_add</i>
                 <% end %>
               </li>
@@ -99,7 +99,7 @@
 
           <% elsif @post.published? && author?(@post) %>
               <li>
-                <%= link_to post_path(:id => @post.id, :posts => { :published? => false}), method: 'PUT', class: 'waves-effect waves-light blue lighten-1 tooltipped' do %>
+                <%= link_to post_path(:id => @post.id, :posts => { :published? => false}), method: 'PUT', class: 'waves-effect waves-light blue lighten-1' do %>
                     <i class="material-icons tooltipped" data-position="top" data-delay="10" data-tooltip="Un-publish Post">not_interested</i>
                 <% end %>
               </li>
