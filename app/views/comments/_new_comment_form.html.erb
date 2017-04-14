@@ -1,5 +1,5 @@
 <div class="row">
-  <%= form_for :comments, url: post_comments_path(post), class: 'col s12' do |f| %>
+  <%= form_for :comments, url: post_comments_path(post),html: {id: "ajax-comment-form"}, class: 'col s12' do |f| %>
       <div class="row">
         <div class="input-field col s12">
           <%= f.text_area :body, class: 'materialize-textarea' %>

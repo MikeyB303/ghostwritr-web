@@ -10,15 +10,19 @@ class CommentsController < ApplicationController
 		new_comment = Comment.new(comment_params)
 		new_comment.commenter_id = current_user.id 
 		new_comment.post_id = params[:post_id]
+		@post = Post.find(params[:post_id])
 
-		if new_comment.save
-			redirect_to post_path(params[:post_id])
-		else
-			@post = Post.find(params[:post_id])
-			@errors = new_comment.errors.full_messages
-			render "comments/new"
+		respond_to do |format|
+
+			if new_comment.save
+				format.html {redirect_to post_path(params[:post_id])}
+				format.js {render layout: false }
+			else
+				@errors = new_comment.errors.full_messages
+				format.html {render "comments/new"}
+				format.js { render layout: false}
+			end
 		end
-
 	end
 
 	def destroy

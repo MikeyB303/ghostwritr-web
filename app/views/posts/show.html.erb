@@ -14,6 +14,9 @@
               <% end %>
           <% end %>
         </div>
+        <div class="hide card-content" id="ajax-comment-form-container">
+          <%= render partial: 'comments/new_comment_form', locals: {post: @post} %>
+        </div> 
         <div class="card-action">
           <% if logged_in? %>
               <%= link_to 'Add a comment', new_post_comment_path(@post), id: "add-comment" %>
@@ -22,7 +25,6 @@
       </div>
     </div>
   </div>
-  <%= render partial: 'comments/new_comment_form', locals: {post: @post} %>
 
   <div class="col s12 center-align">
     <div id="tweet-container" class="btn btn-success clearfix">
@@ -48,7 +50,7 @@
   </li>
   <% if @post.comments %>
     <% @post.comments.each do |comment| %>
-      <%= render partial: 'comments/comments_index', locals: {comment: comment} %>
+      <%= render partial: 'comments/comments_index', locals: {comment: comment, post: @post} %>
     <% end %>
   <% end %>
 </ul>
