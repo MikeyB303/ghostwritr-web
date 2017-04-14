@@ -4,7 +4,6 @@
       <div class="card-stacked">
         <div class="card-content">
           <span class="card-title center-on-small-only"><h3 class="flow-text" style="font-size: 200%"><%= @post.title %></h3></span>
-          <!--<div class="divider"></div>-->
           <span class="secondary-content"><%= @post.votes.count %> likes</span>
           <p class="flow-text" style="font-size: 110%">Written by: <%= link_to "#{@post.author.username}", user_path(@post.author.id) %></p>
           <p class="flow-text" id='post-text'><%= @post.text %></p>

@@ -2,16 +2,22 @@ $(document).on('turbolinks:load', function () {
   var apiDestination;
   var $postForm = $('#post-form');
 
+
+
+
   $('#libraries').change(function () {
     $('#predictions').empty().addClass('hide');
     apiDestination = $(this).find(':selected').data('author');
     $('#user-text').prop('disabled', false);
   });
 
-  $postForm.on('keydown', '#user-text', function (event) {
+  $postForm.on('keyup', '#user-text', function (event) {
     var $predictions = $('#predictions');
     var $active;
+    var userInput = $('#user-text').val();
     $('.tooltipped').tooltip('remove');
+    eventCleanup(event, userInput);
+
 
     if(event.which === 32){
       var userText = $(this).serialize();
@@ -58,9 +64,10 @@ $(document).on('turbolinks:load', function () {
   $postForm.on('keydown', '#user-text', function (event) {
     var $predictions = $('#predictions');
     var $active;
+    var $userText = $('#user-text');
+    eventCleanup($userText.val());
     if (event.which === 9) {
       event.preventDefault();
-      var $userText = $('#user-text');
       $active = $predictions.find('.active');
       $userText.val($userText.val() + $active.text() + ' ');
       triggerSpace();
@@ -74,12 +81,19 @@ $(document).on('turbolinks:load', function () {
     triggerSpace();
   });
 
+  //fixes chrome on android not providing the right keycodes by setting the keycode to the last character typed
+  function eventCleanup(event, userInput){
+    if (event.which === 0 || event.which === 229){
+      event.which = userInput.charAt(userInput.length-1).charCodeAt(0);
+    }
+  }
 
   function triggerSpace() {
-    e = $.Event('keydown');
+    e = $.Event('keyup');
     e.which = 32;
     $('#user-text').trigger(e);
   }
+
   function renderWords(wordsArray) {
     var $predictionField = $('#predictions');
     $predictionField.empty();
