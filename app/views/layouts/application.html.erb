@@ -13,8 +13,8 @@
     <div class="nav-wrapper">
       <div class="navbar-fixed">
         <nav>
-          <a href="/" class="brand-logo center">
-            <img class="responsive-img" src="/images/Ghost_Writer_character_64.png">
+          <a href="/" >
+            <img class="responsive-img brand-logo center" src="/images/Ghost_Writer_character.png">
           </a>
           <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
           <ul id="nav-mobile" class="left hide-on-med-and-down">
@@ -30,15 +30,18 @@
         </nav>
       </div>
     </div>
-    <ul class="side-nav" id="mobile-demo">
+    <ul class="side-nav collection" id="mobile-demo">
+      <div class="background">
+        <img src="/images/Ghost_Writer_character.png">
+      </div>
       <% if logged_in? %>
-          <li><%= link_to "#{current_user.username}", user_path(current_user) %></li>
-          <li><%= link_to 'logout', session_path(current_user), method: :delete %></li>
+          <li class="collection-item"><%= link_to "#{current_user.username}", user_path(current_user), class: 'flow-text' %></li>
+          <li class="collection-item"><%= link_to 'logout', session_path(current_user), method: :delete, class: 'flow-text' %></li>
       <% else %>
-          <li><%= link_to 'Sign Up', new_user_path %></li>
-          <li><%= link_to 'Log in', new_session_path %></li>
+          <li class="collection-item"><%= link_to 'Sign Up', new_user_path, class: 'flow-text' %></li>
+          <li class="collection-item"><%= link_to 'Log in', new_session_path, class: 'flow-text' %></li>
       <% end %>
-      <li><%= link_to 'Home', "/" %></li>
+      <li class="collection-item"><%= link_to 'Home', "/", class: 'flow-text' %></li>
     </ul>
     <div class="container">
       <%= yield %>
