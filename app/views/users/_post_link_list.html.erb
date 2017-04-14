@@ -1,5 +1,5 @@
 <div class="collection" id="user-published-posts-list">
-  <% if return_true_if_user_has_published_post(user) %>
+  <% if user_has_post(user) %>
       <% published_posts(user, published).each do |post| %>
           <%= link_to "#{post.title}", post_path(post), class: 'collection-item flow-text' %>
       <% end %>
