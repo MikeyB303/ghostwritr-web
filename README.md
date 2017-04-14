@@ -46,7 +46,7 @@ To install them, run the following commands in your terminal:
 7.  To edit, delete, or publish a post you've made, click on the options button in the bottom right corner of the screen while viewing your post to reveal the options bar along the bottom the screen. 
 
 ## Contributing
-If you'd like to contribute to Ghoswriter, simply fork this repo, make your desired changes, and create a pull request for us to review. If all is good, we'll accept your changes!
+If you'd like to contribute to Ghostwriter, simply fork this repo, make your desired changes, and create a pull request for us to review. If all is good, we'll accept your changes!
 
 ## Code Status
 ![code-status](https://circleci.com/gh/MikeyB303/ghostwritr-web.svg?style=shield&circle-token=:circle-token)
